@@ -10,8 +10,8 @@ import HikerResources from './components/HikerResources/HikerResources';
 
 export default (
     <Switch>
-        <Route exact path='/' component={Auth}/>
-        <Route path='/home' component={Home}/>
+        <Route exact path='/' component={Home}/>
+        <Route path='/login' component={Auth}/>
         <Route path='/hikes' component={HikeDashboard}/>
         <Route path='/gear' component={GearDashboard}/>
         <Route path='/setalert' component={SetAlert}/>

@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
 
 class Auth extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            username: ''
+        }
+    }
     render () {
         return (
             <div>
-                Auth
+                Log in
+                Register
             </div>
         )
     }
