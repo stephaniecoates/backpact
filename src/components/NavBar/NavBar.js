@@ -1,16 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+import {connect} from 'react-redux';
 
 function NavBar (props) {
+    console.log('nav bar user', props.user)
         return (
             <div>
                 {props.location.pathname === '/login' ? null : <div>
+                    this is the nav bar
 
-                    {/* replace true with req.session.user check */}
-
-                    {false ? <div><h3>Hi, user!</h3><Link to='/login'>Log out</Link></div> : <Link to='/login'>Log In/Register</Link>}
-
+                    {props.user.username ? <div><h3>Hi, {props.user.username}</h3><Link to='/login'>Log out</Link></div> : <Link to='/login'>Log In/Register</Link>}
+                    <br/>
                     <Link to='/'>Home</Link>
                     <br/>
                     <Link to='/hikes'>Browse Trails</Link>
@@ -30,4 +31,11 @@ function NavBar (props) {
     
 }
 
-export default withRouter(NavBar);
+function mapStateToProps (state) {
+    let {user} = state
+    return {
+        user
+    }
+}
+
+export default withRouter(connect(mapStateToProps, {})(NavBar));
