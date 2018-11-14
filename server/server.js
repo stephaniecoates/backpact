@@ -35,6 +35,8 @@ app.post(`/auth/login`, authController.login)
 
 app.get(`/auth/user-data`, authController.getUserData)
 
+app.get(`/auth/logout`, authController.logout)
+
 //hike endpoints
 
 //gear endpoints

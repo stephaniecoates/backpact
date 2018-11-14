@@ -32,7 +32,12 @@ module.exports = {
         if (req.session.user) {
             res.status(200).send(req.session.user)
         } else {
-            res.sendStatus(401);
+            res.status(200).send({message: 'User is not logged in'});
         }
+    },
+    logout: async (req, res) => {
+        req.session.destroy();
+        //does this also need to be changed when going to host?
+        res.redirect(`http://localhost:3000`)
     }
 }
