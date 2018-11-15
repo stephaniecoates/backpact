@@ -2,25 +2,30 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './NavBar.css'
+import Button from '@material-ui/core/Button';
 
 function NavBar(props) {
+    const loginLink = props => <Link to="/login" {...props} />
     return (
-        <div className='header'>
-            <div className='trail-angel-header'>
-                <Link to='/'>Trail Angel</Link>
+        <div className='full-header'>
+        <div className='trail-angel-header'>
+            <Link className='trail-angel-logo' to='/'>Trail Angel</Link>
             </div>
-
             {props.location.pathname === '/login' ? null :
-                <div className='nav-bar'>
-                    <div className='top-nav'>
+                <div className='full-nav-bar'>
+                    
                         {props.user.username ?
                             <div className='logged-in-display'>
-                                <h3>Hi, {props.user.username}</h3>
-                                <a href='http://localhost:4000/auth/logout'><button>Log Out</button></a>
+                                <h3 className='hello-user'>hey, {props.user.username}!</h3>
+                                {/* is this bad practice? Will it need to be changed if I host? */}
+                                <Button variant='contained' style={{color:'white', maxWidth:'50px', maxHeight:'30px', fontSize:'12px', textTransform:'lowercase'}}><a style={{width:"100px"}} href='http://localhost:4000/auth/logout'>Logout</a></Button>
                             </div>
                             :
-                            <Link to='/login'>Log In/Register</Link>}
-                    </div>
+                            <div className='login-button'>
+                            <Button variant='contained'  style={{color:'white'}} component={loginLink}>Log In/Register</Button>
+                            </div>}
+                    
                     <div className='bottom-nav'>
                         <br />
                         <Link to='/hikes'>Browse Trails</Link>

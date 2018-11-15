@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {updateUser} from './../../ducks/reducer';
+import './Auth.css';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 
 class Auth extends Component {
     constructor() {
@@ -12,7 +15,6 @@ class Auth extends Component {
             password: '',
             errMsg: ''
         }
-        this.componentDidMount = this.componentDidMount.bind(this)
     }
 
     updateUsername(e) {
@@ -74,13 +76,22 @@ class Auth extends Component {
             <div>
                 {/* is there a better place to put this redirect? */}
                 {this.props.user.username ? this.props.history.push('/home') :
-                    <div>
-                        <input type='text' placeholder='username' onChange={(e) => this.updateUsername(e.target.value)} />
-                        <input type='password' placeholder='password' onChange={(e) => this.updatePassword(e.target.value)} />
+                    <div className='background'>
+                    <br/>
+                    <div className='login-box'>
+                    <h4 style={{margin: '20px', marginBottom:'5px'}}>Log in or create an account to start planning your adventure.</h4>
+                    <div className='input-box'>
+                        <TextField required id='username-input' label='username' margin='dense' onChange={(e) => this.updateUsername(e.target.value)} />
+                        <br/>
+                        <TextField required id='password-input' type='password' label='password' margin='dense'  onChange={(e) => this.updatePassword(e.target.value)} />
+                        </div>
+                        {this.state.errMsg ? <p style={{color: "red", fontSize: "9px", margin:'0px'}}>{this.state.errMsg}</p> : null}
                         <br />
-                        {this.state.errMsg ? <p>{this.state.errMsg}</p> : null}
-                        <button onClick={() => this.login()}>Log In</button>
-                        <button onClick={() => this.register()}>Register</button>
+                        <div className='button'>
+                        <Button variant='contained' onClick={() => this.login()}>Log In</Button>
+                        <Button variant='contained' onClick={() => this.register()}>Register</Button>
+                        </div>
+                        </div>
                     </div>}
             </div>
         )

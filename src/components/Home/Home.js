@@ -1,3 +1,6 @@
+//ask about <a> in navbar and authctrl
+//ask about auth warning: Warning: Cannot update during an existing state transition (such as within `render`) during redirect
+
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
