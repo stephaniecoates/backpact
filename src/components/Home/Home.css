@@ -37,9 +37,9 @@
     font-family: Roboto;
     text-transform: uppercase;
     text-align: left;
-    font-size: 22px;
+    font-size: 20px;
     margin-bottom: 20px;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
     
 }
 
@@ -57,10 +57,6 @@
 
 
 @media (max-width: 900px) {
-    .second {
-        font-size: 20px;
-
-}
     .home-buttons {
         justify-content: flex-start;
 }

@@ -20,7 +20,7 @@ class Home extends Component {
         return (
             <div className='home-background'>
             <div className='home-content'>
-                <h1 className='main'>For your next backpacking adventure, give yourself (and mom) some peace of mind.</h1>
+                <h1 className='main'>For your next backpacking adventure, give yourself (and your mom) some peace of mind.</h1>
                 <h1 className='second'>Trail Angel takes the guesswork out of trip planning.</h1>
                 {this.props.user.username ? <div className='home-buttons'>
                     <Button style={{padding: '10px', margin:'10px 10px 10px 0px'}} variant='outlined' component={Link} to='/hikes'>Find a Hike</Button> 
