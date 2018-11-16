@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import './App.css';
 import routes from './routes';
-import NavBar from './components/NavBar/NavBar';
 import 'typeface-roboto';
+import Layout from './components/Layout/Layout';
+import { withRouter } from 'react-router-dom';
+import Auth from './components/Auth/Auth'
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-       <NavBar />
+      <div className="App"> 
+      {this.props.location.pathname === '/login' ? <Auth /> : 
+      <Layout>
        {routes}
+       </Layout>}
       </div>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

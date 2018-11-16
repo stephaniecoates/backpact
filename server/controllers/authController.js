@@ -37,7 +37,6 @@ module.exports = {
     },
     logout: async (req, res) => {
         req.session.destroy();
-        //does this also need to be changed when going to host?
-        res.redirect(`http://localhost:3000`)
+        res.status(200).send({message: 'loggedOut'});
     }
 }

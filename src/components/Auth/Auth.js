@@ -5,6 +5,8 @@ import {updateUser} from './../../ducks/reducer';
 import './Auth.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import {withRouter} from 'react-router-dom';
 
 class Auth extends Component {
     constructor() {
@@ -59,10 +61,8 @@ class Auth extends Component {
             password: this.state.password
         })
         let response = res.data.message
-        // console.log(response)
         if (response === 'loggedIn') {
             this.props.history.push('/')
-            // update user from redux props
         } else {
             this.setState({
                 errMsg: response
@@ -75,17 +75,19 @@ class Auth extends Component {
         return (
             <div>
                 {/* is there a better place to put this redirect? */}
-                {this.props.user.username ? this.props.history.push('/home') :
+                {this.props.user.username ? this.props.history.push('/') :
                     <div className='background'>
                     <br/>
                     <div className='login-box'>
-                    <h4 style={{margin: '20px', marginBottom:'5px'}}>Log in or create an account to start planning your adventure.</h4>
-                    <div className='input-box'>
+                    <Typography variant='h5' style={{marginTop: '30px', textTransform: 'lowercase', letterSpacing: '2px', fontFamily: 'Roboto'}}>Trail Angel</Typography>
+                    <Typography variant='caption' style={{textTransform: 'uppercase', width: '300px', margin: '20px auto 5px auto'}}>Log in or create an account to <br/> start planning your adventure.</Typography>
+                
+                    <div className='input-box' style={{marginTop: '-10px'}}>
                         <TextField required id='username-input' label='username' margin='dense' onChange={(e) => this.updateUsername(e.target.value)} />
                         <br/>
                         <TextField required id='password-input' type='password' label='password' margin='dense'  onChange={(e) => this.updatePassword(e.target.value)} />
                         </div>
-                        {this.state.errMsg ? <p style={{color: "red", fontSize: "9px", margin:'0px'}}>{this.state.errMsg}</p> : null}
+                        {this.state.errMsg ? <p style={{color: "red", fontSize: "9px", width: '250px', margin: '0px auto'}}>{this.state.errMsg}</p> : null}
                         <br />
                         <div className='button'>
                         <Button variant='contained' onClick={() => this.login()}>Log In</Button>
@@ -105,4 +107,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {updateUser})(Auth);
+export default withRouter(connect(mapStateToProps, {updateUser})(Auth));

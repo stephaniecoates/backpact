@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+}
+
+.home-background {
+    position: fixed;
+    top: 64px;
+    left: 240px;
+    height: 100vh;
+    width: 100vw - 240px;
+    max-width: 1800px;
+    background-color: rgba(255, 255, 255, 0.479);
+    background-blend-mode: overlay;
+    background-image: url('bg3.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.home-content {
+    position: relative;
+    width: 90vw - 240px;
+    margin: 20px;
+    margin-top: 50px;
+}
+
+.main {
+    color: black;
+    font-family: Roboto;
+    text-transform: uppercase;
+    padding: 90px 10px 20px 0px;
+    letter-spacing: 1px;
+    text-align: left;
+} 
+
+.second {
+    color: black;
+    font-family: Roboto;
+    text-transform: uppercase;
+    text-align: left;
+    font-size: 22px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    
+}
+
+.home-buttons {
+    display: flex;
+    margin: 0px;
+    justify-content: flex-start;
+}
+
+.login-button {
+    float: left;
+    margin: 15px 0px;
+    padding: 0px;
+}
+
+
+@media (max-width: 900px) {
+    .second {
+        font-size: 20px;
+
+}
+    .home-buttons {
+        justify-content: flex-start;
+}
+}
+
+@media (max-width: 740px) {
+    .main {
+        text-align: center;
+        padding: 40px 10px 20px 0px;
+        font-size: 24px
+    } 
+    
+    .second {
+        text-align: center;
+        font-size: 16px;
+
+}
+    .home-buttons {
+        justify-content: center;
+}
+.login-button {
+    float: none;
+    margin: auto;
+}
+}
+
+@media (max-width: 600px) {
+    .home-background {
+        top: 56px;
+        width: 100%;
+        left: 0;
+        background-position: 30% 50%;
+    }
+    .home-content {
+        width: 90vw;
+        margin: 20px;
+    }
+    .main {
+        margin-top: 70px;
+        padding: 40px 10px 20px 0px;
+        font-size: 22px;
+    } 
+}
+
+@media (max-width: 325px) {
+    .main {
+        margin-top: 20px
+    }
+}
