@@ -1,3 +1,3 @@
 select * 
-from trail_angel_user
+from backpact_user
 where username = $1;

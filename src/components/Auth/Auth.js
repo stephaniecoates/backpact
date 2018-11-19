@@ -71,7 +71,7 @@ class Auth extends Component {
     }
 
     render() {
-
+        console.log(this.state)
         return (
             <div>
                 {/* is there a better place to put this redirect? */}

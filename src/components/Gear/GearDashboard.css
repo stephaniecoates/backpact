@@ -1,0 +1,132 @@
+
+.gear-container {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-evenly;
+     /* border: solid 1px black; */
+     width: 95%;
+     height: 60vh;
+     overflow: scroll;
+     margin: auto;
+
+ }
+
+ .gear-dashboard-header {
+    font-weight: bold;
+    font-size: 19px;
+    text-transform: uppercase;
+    text-align: left
+ }
+
+ .gear-dashboard-subheader {
+    font-size: 12px;
+    text-align: left;
+    margin: 5px auto 10px auto;
+    text-transform: uppercase;
+}
+
+.add-custom-gear-text {
+    font-size: 14px;
+    margin-right: 20px;
+           
+}
+
+ .add-custom-gear-section {
+    text-transform: uppercase;
+    text-align: center;
+    display: flex;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: center;
+ }
+
+ @media (min-width: 1200px){
+    .gear-dashboard-header {
+        font-size: 20px;
+     }
+    
+     .gear-dashboard-subheader {
+        font-size: 14px; 
+        margin-bottom: 20px;
+    }
+ }
+
+ @media (max-width: 800px) {
+
+    .gear-dashboard-header {
+       font-size: 14px;
+    }
+    .gear-dashboard-subheader {
+        font-size: 12px;
+    }
+    .gear-container {
+        height: 60vh;
+    }
+    .add-custom-gear-text {
+        font-size: 10px;
+        width: 150px;
+        margin-right: 10px;
+   }
+   .add-custom-gear-section {
+        margin-top: 25px;
+       justify-content: center;
+    }
+
+}
+
+ @media (max-width: 600px) {
+
+    .gear-dashboard-header {
+       font-size: 14px;
+    }
+    .gear-dashboard-subheader {
+        font-size: 1px;
+    }
+    .gear-container {
+        height: 55vh;
+    }
+    .add-custom-gear-text {
+        font-size: 10px;
+        width: 150px;
+        margin-right: 10px;
+   }
+   .add-custom-gear-section {
+        margin-top: 25px;
+       justify-content: center;
+    }
+
+}
+
+@media (max-width: 325px) {
+    
+    .gear-dashboard-header {
+        font-size: 12px;
+    }
+    .gear-dashboard-subheader {
+        font-size: 9px;
+    }
+    .gear-container {
+        position: fixed;
+        left: 10px;
+        margin-bottom: 20px;
+    }
+    .add-custom-gear-text {
+        font-size: 10px;
+        width: 150px;
+        margin-right: 10px;
+    }
+    .add-custom-gear-section {
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        justify-content: center;
+    }
+    
+}
+@media (max-height: 667px) {
+        
+    .gear-container {
+        height: 55vh
+        }
+    }

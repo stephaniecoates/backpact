@@ -1,4 +1,4 @@
-insert into trail_angel_user 
+insert into backpact_user 
 (username, hash) 
 values 
 ($1, $2)
