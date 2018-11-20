@@ -5,7 +5,7 @@ const session = require('express-session');
 const authController = require('./controllers/authController');
 // const gearController = require('./controllers/gearController');
 // const hikeController = require('./controllers/hikeController');
-// const alertController = require('./controllers/alertController');
+const alertController = require('./controllers/alertController');
 
 //destructure from .env
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET} = process.env;
@@ -42,6 +42,7 @@ app.get(`/auth/logout`, authController.logout)
 //gear endpoints
 
 //alert endpoints
+app.post(`/api/setalert`, alertController.setAlert)
 
 //listen
 app.listen(SERVER_PORT, () => {

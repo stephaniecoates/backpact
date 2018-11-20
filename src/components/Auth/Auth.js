@@ -33,7 +33,6 @@ class Auth extends Component {
 
     async componentDidMount() {
         let res = await axios.get(`/auth/user-data`)
-        console.log('navbar component user', res.data)
         this.props.updateUser(res.data)
     }
 

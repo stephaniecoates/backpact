@@ -1,6 +1,8 @@
 //initial state
 const initialState = {
-    user: {}
+    user: {},
+    myHike: {},
+    alertInfo: {}
 }
 
 //define strings to variables
