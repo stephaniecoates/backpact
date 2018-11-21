@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import * as moment from 'moment';
+import 'moment-timezone';
 
 
 class SetAlert extends Component {
@@ -83,10 +84,8 @@ class SetAlert extends Component {
             country: this.state.country,
             tripDescription: this.state.tripDescription,
 
-            tripStartTime: this.state.tripStartTime,
-            tripStartDate: this.state.tripStartDate,
-            tripEndTime: this.state.tripEndTime,
-            tripEndDate: this.state.tripEndDate,
+            tripStart: moment(this.state.tripStartDate + " " + this.state.tripStartTime).format(),
+            tripEnd: moment(this.state.tripEndDate + " " + this.state.tripEndTime).format(),
 
             firstName: this.state.firstName,
             lastName: this.state.lastName,

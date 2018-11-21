@@ -3,6 +3,7 @@ module.exports = {
         console.log(req.body)
         let {
             alertId,
+
             trailName,
             trailType,
             trailGroup,
@@ -15,10 +16,8 @@ module.exports = {
             country,
             tripDescription,
 
-            tripStartTime,
-            tripStartDate,
-            tripEndTime,
-            tripEndDate,
+            tripStart,
+            tripEnd,
 
             firstName,
             lastName,
@@ -53,10 +52,8 @@ module.exports = {
             country,
             tripDescription,
 
-            tripStartTime,
-            tripStartDate,
-            tripEndTime,
-            tripEndDate,
+            tripStart,
+            tripEnd,
 
             firstName,
             lastName,

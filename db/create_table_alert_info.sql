@@ -13,10 +13,8 @@ state varchar(30),
 country varchar(30),
 trip_description varchar(500),
 
-trip_start_time text,
-trip_start_date text,
-trip_end_time text,
-trip_end_date text,
+trip_start timestamp with time zone,
+trip_end timestamp with time zone,
 
 first_name varchar(20),
 last_name varchar(30),

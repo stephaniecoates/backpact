@@ -12,10 +12,8 @@ state,
 country,
 trip_description,
 
-trip_start_time,
-trip_start_date,
-trip_end_time,
-trip_end_date,
+trip_start,
+trip_end,
 
 first_name,
 last_name,
@@ -52,30 +50,29 @@ $12,  --trip desc
 
 -- dates/times
 
-$13, -- trip start time
-$14, --trip start date
-$15, --trip end time
-$16, --trip end date
+$13, -- trip start
+$14, --trip end
+
 
 --user info
 
-$17, --first name
-$18, --last name
-$19, --age
-$20, --user phone number
-$21, --gender
-$22, --height
-$23, --weight
-$24, --hair color
-$25, --clothing desc
-$26, --medications
-$27, --medical issues
+$15, --first name
+$16, --last name
+$17, --age
+$18, --user phone number
+$19, --gender
+$20, --height
+$21, --weight
+$22, --hair color
+$23, --clothing desc
+$24, --medications
+$25, --medical issues
 
 --designated contact info
 
-$28, --designated contact name
-$29,  --user contact relationship
-$30, --designated contact number
-$31 --designated contact email
+$26, --designated contact name
+$27,  --user contact relationship
+$28, --designated contact number
+$29 --designated contact email
 )
 returning *;

@@ -48,10 +48,10 @@ app.post(`/api/createalert`, alertController.createAlert)
 //cron scheduler, running every hour
 cron.schedule(`0 * * * *`, async () => {
     let db = app.get('db');
-    let alertArray = await db.select_all_alerts()
-    await db.changeBoolean([])
+    let expiredAlertArray = await db.select_expired_alerts()
+  
     //update alert info, set boolean value to false
-    console.log('array of object alerts every hour', alertArray)
+    console.log('array of expired alerts every hour', expiredAlertArray)
 
 })
 
