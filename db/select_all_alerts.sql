@@ -1,0 +1,1 @@
+select * from alert_info;

@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const massive = require('massive');
 const session = require('express-session');
+var cron = require('node-cron');
 const authController = require('./controllers/authController');
 // const gearController = require('./controllers/gearController');
 // const hikeController = require('./controllers/hikeController');
@@ -43,6 +44,16 @@ app.get(`/auth/logout`, authController.logout)
 
 //alert endpoints
 app.post(`/api/createalert`, alertController.createAlert)
+
+//cron scheduler, running every hour
+cron.schedule(`0 * * * *`, async () => {
+    let db = app.get('db');
+    let alertArray = await db.select_all_alerts()
+    await db.changeBoolean([])
+    //update alert info, set boolean value to false
+    console.log('array of object alerts every hour', alertArray)
+
+})
 
 //listen
 app.listen(SERVER_PORT, () => {

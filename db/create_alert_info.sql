@@ -3,10 +3,10 @@ alert_id,
 trail_name,
 trail_type,
 trail_group,
+wilderness_area,
 starting_trailhead,
 ending_trailhead,
 roundtrip_distance,
-wilderness_area,
 nearest_town,
 state,
 country,
@@ -19,15 +19,15 @@ trip_end_date,
 
 first_name,
 last_name,
-user_phone_number,
 age,
+user_phone_number,
 gender,
 height,
 weight,
 hair_color,
 clothing_description,
-medical_issues,
 medications,
+medical_issues,
 
 alert_contact_name,
 user_contact_relationship,
@@ -41,14 +41,14 @@ $1, --alert id
 $2,  --trail name
 $3, --trail type
 $4, --trail group
-$5, --starting trailhead
-$6,  --ending trailhead
-$7,  --rt distance
-$8,  --wilderness area
-$9,  --trip desc
-$10,  --nearest town
-$11,  --state
-$12, --country
+$5,  --wilderness area
+$6, --starting trailhead
+$7,  --ending trailhead
+$8,  --rt distance
+$9,  --nearest town
+$10,  --state
+$11, --country
+$12,  --trip desc
 
 -- dates/times
 
@@ -61,15 +61,15 @@ $16, --trip end date
 
 $17, --first name
 $18, --last name
-$19, --user phone number
-$20, --age
+$19, --age
+$20, --user phone number
 $21, --gender
 $22, --height
 $23, --weight
 $24, --hair color
 $25, --clothing desc
-$26, --medical issues
-$27, --medications
+$26, --medications
+$27, --medical issues
 
 --designated contact info
 

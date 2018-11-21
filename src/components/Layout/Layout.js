@@ -164,7 +164,7 @@ class Layout extends Component {
                 {drawer}
               </Drawer>
             </Hidden>
-            <Hidden xsDown implementation="css">
+            {/* <Hidden xsDown implementation="css">
               <Drawer
                 classes={{
                   paper: classes.drawerPaper,
@@ -174,7 +174,7 @@ class Layout extends Component {
               >
                 {drawer}
               </Drawer>
-            </Hidden>
+            </Hidden> */}
           </nav>
           <main className={classes.content}>
             <div className={classes.toolbar} />
