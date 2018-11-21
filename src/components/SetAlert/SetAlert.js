@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { updateUser } from './../../ducks/reducer';
+import { updateUser } from '../../ducks/reducer';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import * as moment from 'moment';
+
+var today = moment().format("YYYY-MM-DD")
+var todayHour = moment().format("HH:mm")
 
 class SetAlert extends Component {
     constructor() {
@@ -20,20 +24,15 @@ class SetAlert extends Component {
             endingTrailhead: '',
             roundtripDistance: '',
             wildernessArea: '',
-            tripDescription: '',
             nearestTown: '',
             state: '',
             country: '',
-            timezone: '',
+            tripDescription: '',
 
-            tripStartHour: '',
-            tripStartMonth: '',
+            tripStartTime: '',
             tripStartDate: '',
-            tripStartYear: '',
-            tripEndHour: '',
-            tripEndMonth: '',
+            tripEndTime: '',
             tripEndDate: '',
-            tripEndYear: '',
 
             firstName: '',
             lastName: '',
@@ -50,7 +49,8 @@ class SetAlert extends Component {
             alertContactName: '',
             userContactRelationship: '',
             alertContactNumber: '',
-            alertContactEmail: ''
+            alertContactEmail: '',
+   
         }
     }
 
@@ -63,18 +63,16 @@ class SetAlert extends Component {
         this.props.updateUser(res.data)
     }
 
-
-
-
-
     handleChange = name => event => {
         this.setState({
             [name]: event.target.value,
         });
     };
 
+
+
     async setAlert() {
-        let res = await axios.post('/api/setalert', {
+        let res = await axios.post('/api/createalert', {
             alertId: this.state.alertId,
 
             trailName: this.state.trailName,
@@ -84,20 +82,15 @@ class SetAlert extends Component {
             endingTrailhead: this.state.endingTrailhead,
             roundtripDistance: this.state.roundtripDistance,
             wildernessArea: this.state.wildernessArea,
-            tripDescription: this.state.tripDescription,
             nearestTown: this.state.nearestTown,
             state: this.state.state,
             country: this.state.country,
-            timezone: this.state.timezone,
+            tripDescription: this.state.tripDescription,
 
-            tripStartHour: this.state.tripStartHour,
-            tripStartMonth: this.state.tripStartMonth,
+            tripStartTime: this.state.tripStartTime,
             tripStartDate: this.state.tripStartDate,
-            tripStartYear: this.state.tripStartYear,
-            tripEndHour: this.state.tripEndHour,
-            tripEndMonth: this.state.tripEndMonth,
+            tripEndTime: this.state.tripEndTime,
             tripEndDate: this.state.tripEndDate,
-            tripEndYear: this.state.tripEndYear,
 
             firstName: this.state.firstName,
             lastName: this.state.lastName,
@@ -114,20 +107,22 @@ class SetAlert extends Component {
             alertContactName: this.state.alertContactName,
             userContactRelationship: this.state.userContactRelationship,
             alertContactNumber: this.state.alertContactNumber,
-            alertContactEmail: this.state.alertContactEmail
+            alertContactEmail: this.state.alertContactEmail,
         })
         console.log('returned createdAlert', res.data)
     }
 
 
     render() {
+        console.log(todayHour)
         const inputStyles = {
-            margin: '10px auto'
+            margin: '10px auto',
         }
         console.log('setalert state', this.state)
         return (
             <div>
-                <h2 style={{ textAlign: 'left' }}>TRAIL INFO</h2>
+                <div>
+                <h2 style={{ textAlign: 'left', marginBottom: '0px' }}>TRAIL INFO</h2>
                 <TextField
                     id="trailName"
                     fullWidth
@@ -150,37 +145,33 @@ class SetAlert extends Component {
                     id="trailGroup"
                     fullWidth
                     label="Group Size"
+                    multiline
                     style={inputStyles}
                     helperText="Are there other humans/animals in your group? List them here. Otherwise, specify that you're going solo."
                     value={this.state.trailGroup}
                     onChange={this.handleChange('trailGroup')}
                 />
-                <div style={{ width: '100%', margin: '10px auto', display: 'flex', justifyContent: 'space-between' }}>
+                </div>
+                <div className='smallinputdiv' style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between' }}>
                     <TextField
                         id="startingTrailhead"
                         label="Starting Trailhead"
-                        rows='2'
-                        multiline
                         value={this.state.startingTrailhead}
-                        style={{ width: '30%' }}
+                        style={{...inputStyles, width: '30%', padding: 'auto 0px', margin: 'auto 0px', minWidth: '200px' }}
                         onChange={this.handleChange('startingTrailhead')}
                     />
                     <TextField
                         id="endingTrailhead"
                         label="Ending Trailhead"
-                        rows='2'
-                        multiline
                         value={this.state.endingTrailhead}
-                        style={{ width: '30%' }}
+                        style={{...inputStyles, width: '30%', padding: 'auto 0px', margin: 'auto 0px', minWidth: '200px' }}
                         onChange={this.handleChange('endingTrailhead')}
                     />
                     <TextField
                         id="roundtripDistance"
                         label="Roundtrip Distance"
-                        rows='2'
-                        multiline
                         value={this.state.roundtripDistance}
-                        style={{ width: '30%' }}
+                        style={{...inputStyles, width: '30%', padding: 'auto 0px', margin: 'auto 0px', minWidth: '200px' }}
                         onChange={this.handleChange('roundtripDistance')}
                     />
                 </div>
@@ -194,6 +185,31 @@ class SetAlert extends Component {
                     value={this.state.wildernessArea}
                     onChange={this.handleChange('wildernessArea')}
                 />
+                <div style={{ width: '100%', margin: '10px auto', display: 'flex', justifyContent: 'space-between' }}>
+
+                    <TextField
+                        id="nearestTown"
+                        label="Town/City"
+                        helperText='If the trail spans multiple towns, list the one nearest the starting trailhead.'
+                        value={this.state.nearestTown}
+                        style={{ width: '30%' }}
+                        onChange={this.handleChange('nearestTown')}
+                    />
+                    <TextField
+                        id="state"
+                        label="State"
+                        value={this.state.state}
+                        style={{ width: '30%' }}
+                        onChange={this.handleChange('state')}
+                    />
+                    <TextField
+                        id="country"
+                        label="Country"
+                        value={this.state.country}
+                        style={{ width: '30%' }}
+                        onChange={this.handleChange('country')}
+                    />
+                </div>
                 <TextField
                     id="tripDescription"
                     label="Trip Description"
@@ -206,255 +222,189 @@ class SetAlert extends Component {
                     value={this.state.tripDescription}
                     onChange={this.handleChange('tripDescription')}
                 />
-                <div style={{ width: '100%', margin: '10px auto', display: 'flex', justifyContent: 'space-between' }}>
-
-                    <TextField
-                        id="nearestTown"
-                        label="Town/City"
-                        helperText='If the trail spans multiple towns, list the one nearest the starting trailhead.'
-                        value={this.state.nearestTown}
-                        style={{ width: '23%' }}
-                        onChange={this.handleChange('nearestTown')}
-                    />
-                    <TextField
-                        id="state"
-                        label="State"
-                        value={this.state.state}
-                        style={{ width: '23%' }}
-                        onChange={this.handleChange('state')}
-                    />
-                    <TextField
-                        id="country"
-                        label="Country"
-                        value={this.state.country}
-                        style={{ width: '23%' }}
-                        onChange={this.handleChange('country')}
-                    />
-                    <TextField
-                        id="timezone"
-                        label="Timezone"
-                        value={this.state.timezone}
-                        style={{ width: '23%' }}
-                        onChange={this.handleChange('timezone')}
-                    />
-                </div>
 
                 <h2 style={{ textAlign: 'left', marginTop: '30px' }}>TRIP DATES</h2>
-                <p style={{ textAlign: 'left' }}>I'm leaving at...</p>
-                <div style={{ width: '100%', margin: '0px auto 10px auto', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-                    <TextField
-                        id="tripStartHour"
-                        label="Hour"
-                        style={{ width: '20%' }}
-                        value={this.state.tripStartHour}
-                        onChange={this.handleChange('tripStartHour')}
-                    />
-                    on
-                    <TextField
-                        id="tripStartMonth"
-                        label="MM"
-                        style={{ width: '15%' }}
-                        value={this.state.tripStartMonth}
-                        onChange={this.handleChange('tripStartMonth')}
-                    />
-                    /
+                <p style={{ textAlign: 'left' }}>I'm leaving...<button display='outlined' onClick={() => {this.setState({
+                   tripStartTime: todayHour,
+                   tripStartDate: today,
+               })}}>right now!</button></p>
+            
+                <div>
+                <div style={{width: '100%', height: 'auto', margin: '0px auto 10px auto', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between',  alignItems: 'flex-end'}}>
                 <TextField
-                        id="tripStartDate"
-                        label="DD"
-                        style={{ width: '15%' }}
-                        value={this.state.tripStartDate}
-                        onChange={this.handleChange('tripStartDate')}
+                        id="tripStartTime"
+                        type='time'
+                        helperText='start time'
+                        style={{ width: '40%', minWidth: '320px' }}
+                        value={this.state.tripStartTime}
+                        onChange={this.handleChange('tripStartTime')}
                     />
-                    /
+              
+                 
                     <TextField
-                        id="tripStartYear"
-                        label="YYYY"
-                        style={{ width: '15%' }}
-                        value={this.state.tripStartYear}
-                        onChange={this.handleChange('tripStartYear')}
-                    />
+                        id="tripStartDate"
+                        type='date'
+                        helperText='start date'
+                        style={{ width: '40%', minWidth: '320px' }}
+                        value={this.state.tripStartDate}
+                        onChange={this.handleChange('tripStartDate')}/>
+                 </div>
                 </div>
 
                 <p style={{ textAlign: 'left', marginTop: '30px' }}>I'll be back by...</p>
-                <div style={{ width: '100%', margin: '0px auto 10px auto', display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                <div style={{display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap', alignItems: 'center' }}>
                     <TextField
-                        id="tripEndHour"
-                        label="Hour"
-                        style={{ width: '20%' }}
-                        value={this.state.tripEndHour}
-                        onChange={this.handleChange('tripEndHour')}
+                        id="tripEndTime"
+                       helperText='anticipated return time'
+                        style={{ width: '40%', minWidth: '300px'}}
+                        value={this.state.tripEndTime}
+                        type='time'
+                        onChange={this.handleChange('tripEndTime')}
                     />
-                    on
-                    <TextField
-                        id="tripEndMonth"
-                        label="MM"
-                        style={{ width: '15%' }}
-                        value={this.state.tripEndMonth}
-                        onChange={this.handleChange('tripEndMonth')}
-                    />
-                    /
+                
+                 
                     <TextField
                         id="tripEndDate"
-                        label="DD"
-                        style={{ width: '15%' }}
+                        type='date'
+                        style={{ width: '40%', minWidth: '300px' }}
+                        helperText='anticipated return date'
                         value={this.state.tripEndDate}
-                        onChange={this.handleChange('tripEndDate')}
-                    />
-                    /
-                    <TextField
-                        id="tripEndYear"
-                        label="YYYY"
-                        style={{ width: '15%' }}
-                        value={this.state.tripEndYear}
-                        onChange={this.handleChange('tripEndYear')}
-                    />
+                        onChange={this.handleChange('tripEndDate')}/>
+                 
                 </div>
 
                 <h2 style={{ textAlign: 'left', marginTop: '30px' }}>ABOUT ME</h2>
                 <div style={{ width: '100%', margin: '10px auto', display: 'flex', justifyContent: 'space-between' }}>
-                <TextField
-                    id="firstName"
-                    label="First Name"
-                    style={{ width: '30%' }}
-                    value={this.state.firstName}
-                    onChange={this.handleChange('firstName')}
-                />
-                <TextField
-                    id="lastName"
-                    label="Last Name"
-                    style={{ width: '30%' }}
-                    value={this.state.lasttName}
-                    onChange={this.handleChange('lastName')}
-                />
-                 <TextField
-                    id="userPhoneNumber"
-                    label="Phone #"
-                    style={{ width: '30%' }}
-                    helperText="Please list your country code, area code, and ten digit number with no dashes."
-                    value={this.state.userPhoneNumber}
-                    onChange={this.handleChange('userPhoneNumber')}
-                />
+                    <TextField
+                        id="firstName"
+                        label="First Name"
+                        style={{ width: '30%' }}
+                        value={this.state.firstName}
+                        onChange={this.handleChange('firstName')}
+                    />
+                    <TextField
+                        id="lastName"
+                        label="Last Name"
+                        style={{ width: '30%' }}
+                        value={this.state.lasttName}
+                        onChange={this.handleChange('lastName')}
+                    />
+                    <TextField
+                        id="userPhoneNumber"
+                        label="Phone #"
+                        placeholder="+1 (222) 333-4444"
+                        style={{ width: '30%' }}
+                        helperText="Include your country code, area code, and ten digit number."
+                        value={this.state.userPhoneNumber}
+                        onChange={this.handleChange('userPhoneNumber')}
+                    />
                 </div>
                 <div style={{ width: '100%', margin: '10px auto', display: 'flex', justifyContent: 'space-between' }}>
-                <TextField
-                    id="age"
-                    label="Age"
-                    style={{ width: '18%' }}
-                    value={this.state.age}
-                    rows='2'
-                    multiline
-                    onChange={this.handleChange('age')}
-                />
-                <TextField
-                    id="gender"
-                    label="Gender"
-                    style={{ width: '18%' }}
-                    value={this.state.gender}
-                    rows='2'
-                    multiline
-                    onChange={this.handleChange('gender')}
-                />
-                <TextField
-                    id="height"
-                    label="Height"
-                    style={{ width: '18%' }}
-                    value={this.state.height}
-                    rows='2'
-                    multiline
-                    onChange={this.handleChange('height')}
-                />
-                <TextField
-                    id="weight"
-                    label="Weight"
-                    style={{ width: '18%' }}
-                    value={this.state.weight}
-                    rows='2'
-                    multiline
-                    onChange={this.handleChange('weight')}
-                />
-                <TextField
-                    id="hairColor"
-                    label="Hair Color"
-                    style={{ width: '18%' }}
-                    rows='2'
-                    multiline
-                    value={this.state.hairColor}
-                    onChange={this.handleChange('hairColor')}
-                />
+                    <TextField
+                        id="age"
+                        label="Age"
+                        style={{ width: '18%' }}
+                        value={this.state.age}
+                        onChange={this.handleChange('age')}
+                    />
+                    <TextField
+                        id="gender"
+                        label="Gender"
+                        style={{ width: '18%' }}
+                        value={this.state.gender}
+                        onChange={this.handleChange('gender')}
+                    />
+                    <TextField
+                        id="height"
+                        label="Height"
+                        style={{ width: '18%' }}
+                        value={this.state.height}
+                        onChange={this.handleChange('height')}
+                    />
+                    <TextField
+                        id="weight"
+                        label="Weight"
+                        style={{ width: '18%' }}
+                        value={this.state.weight}
+                        onChange={this.handleChange('weight')}
+                    />
+                    <TextField
+                        id="hairColor"
+                        label="Hair Color"
+                        style={{ width: '18%' }}
+                        value={this.state.hairColor}
+                        onChange={this.handleChange('hairColor')}
+                    />
                 </div>
                 <div style={{ width: '100%', margin: '45px auto 10px auto', display: 'flex', justifyContent: 'space-between' }}>
-                <TextField
-                    id="clothingDescription"
-                    label="Clothing Description"
-                    helperText="Describe what you'll be wearing on the trail."
-                    multiline
-                    rows="2"
-                    style={{ width: '30%' }}
-                    value={this.state.clothingDescription}
-                    onChange={this.handleChange('clothingDescription')}
-                />
-                <TextField
-                    id="medicalIssues"
-                    label="Medical Issues"
-                    helperText="List medical issues emergency responders should know about."
-                    multiline
-                    rows="2"
-                    style={{ width: '30%' }}
-                    value={this.state.medicalIssues}
-                    onChange={this.handleChange('medicalIssues')}
-                />
-                <TextField
-                    id="medications"
-                    label="Medications"
-                    helperText="List any medications you take."
-                    multiline
-                    rows="2"
-                    style={{ width: '30%' }}
-                    value={this.state.medications}
-                    onChange={this.handleChange('medications')}
-                />
+                    <TextField
+                        id="clothingDescription"
+                        label="Clothing Description"
+                        helperText="Describe what you'll be wearing on the trail."
+                        multiline
+                        style={{ width: '30%' }}
+                        value={this.state.clothingDescription}
+                        onChange={this.handleChange('clothingDescription')}
+                    />
+                    <TextField
+                        id="medicalIssues"
+                        label="Medical Issues"
+                        multiline
+                        helperText="List medical issues emergency responders should know about."
+                        style={{ width: '30%' }}
+                        value={this.state.medicalIssues}
+                        onChange={this.handleChange('medicalIssues')}
+                    />
+                    <TextField
+                        id="medications"
+                        label="Medications"
+                        multiline
+                        helperText="List any medications you take."
+                        style={{ width: '30%' }}
+                        value={this.state.medications}
+                        onChange={this.handleChange('medications')}
+                    />
                 </div>
                 <h2 style={{ textAlign: 'left', marginTop: '30px' }}>DESIGNATED CONTACT</h2>
-                <p style={{ textAlign: 'left'}}>Worst case scenario: something happens in the backcountry and you don't cancel your alert or respond to our text check-in. Who should we alert?</p>
+                <p style={{ textAlign: 'left' }}>Worst case scenario: something happens in the backcountry and you don't cancel your alert or respond to our text check-in. Who should we alert?</p>
                 <div style={{ width: '100%', margin: '10px auto', display: 'flex', justifyContent: 'space-between' }}>
-                  <TextField
-                    id="alertContactName"
-                    label="Name"
-                    rows='2'
-                    multiline
-                    style={{ width: '48%' }}
-                    value={this.state.alertContactName}
-                    onChange={this.handleChange('alertContactName')}
-                />
-                <TextField
-                    id="userContactRelationship"
-                    label="I am this person's..."
-                    rows='2'
-                    multiline
-                    value={this.state.userContactRelationship}
-                    style={{ width: '48%' }}
-                    placeholder='ex) Mother, friend, partner, etc.'
-                    onChange={this.handleChange('userContactRelationship')}
-                />
+                    <TextField
+                        id="alertContactName"
+                        label="Name"
+                        style={{ width: '48%' }}
+                        value={this.state.alertContactName}
+                        onChange={this.handleChange('alertContactName')}
+                    />
+                    <TextField
+                        id="userContactRelationship"
+                        label="I am this person's..."
+                        value={this.state.userContactRelationship}
+                        style={{ width: '48%' }}
+                        placeholder='ex) daughter, roommate, friend, partner, etc.'
+                        onChange={this.handleChange('userContactRelationship')}
+                    />
                 </div>
                 <div style={{ width: '100%', margin: '10px auto', display: 'flex', justifyContent: 'space-between' }}>
-                <TextField
-                    id="alertContactNumber"
-                    label="Phone #"
-                    style={{ width: '48%' }}
-                    value={this.state.alertContactNumber}
-                    onChange={this.handleChange('alertContactNumber')}
-                />
-                <TextField
-                    id="alertContactEmail"
-                    label="Email"
-                    style={{ width: '48%' }}
-                    value={this.state.alertContactEmail}
-                    onChange={this.handleChange('alertContactEmail')}
-                />
-            </div>
-            <Typography style={{width: '100%', margin: '50px auto'}} variant='caption'>If you don't cancel the alert before your expected return time, we'll text you first to check on you before alerting your designated contact. If we don't hear back from you within in hour - or, if you text us back 'SOS', that's when we alert your contact and email them your trip itinerary and personal info. </Typography>
-            <Button onClick={()=> this.setAlert()}>Set Alert</Button>
+                    <TextField
+                        id="alertContactNumber"
+                        label="Phone #"
+                        style={{ width: '48%' }}
+                        placeholder="+1 (555) 666-7777"
+                        helperText="Include their country code, area code, and ten digit number."
+                        value={this.state.alertContactNumber}
+                        onChange={this.handleChange('alertContactNumber')}
+                    />
+                    <TextField
+                        id="alertContactEmail"
+                        label="Email"
+                        placeholder='email@example.com'
+                        style={{ width: '48%' }}
+                        value={this.state.alertContactEmail}
+                        onChange={this.handleChange('alertContactEmail')}
+                    />
+                </div>
+                <Button variant='contained' style={{ margin: '30px', color: 'white', backgroundColor: 'black' }} onClick={() => this.setAlert()}>Set Alert</Button>
+                <Typography style={{ width: '100%' }} variant='caption'>If you don't cancel the alert before your expected return time, we'll text you first to check on you before alerting your designated contact. If we don't hear back from you within in hour - or, if you text us back 'SOS', that's when we alert your contact and email them your trip itinerary and personal info. </Typography>
             </div>
         )
     }

@@ -1,5 +1,5 @@
-module.exports = {
-    setAlert: async (req, res) => {
+module.exports = {    
+    createAlert: async (req, res) => {
         console.log(req.body)
         let {
             alertId,
@@ -14,16 +14,11 @@ module.exports = {
             nearestTown,
             state,
             country,
-            timezone,
 
-            tripStartHour,
-            tripStartMonth,
+            tripStartTime,
             tripStartDate,
-            tripStartYear,
-            tripEndHour,
-            tripEndMonth,
+            tripEndTime,
             tripEndDate,
-            tripEndYear,
 
             firstName,
             lastName,
@@ -42,12 +37,7 @@ module.exports = {
             alertContactNumber,
             alertContactEmail
         } = req.body;
-    
-        userPhoneNumber = `+${userPhoneNumber}`
-        alertContactNumber = `+${alertContactNumber}`
 
-        //its reading my userPhoneNumber and alertContactNumber as integers, even though theyre specified as varchar...whats going on here?
-       
         let db = req.app.get('db');
         let [createdAlert] = await db.create_alert_info([
             alertId,
@@ -62,16 +52,11 @@ module.exports = {
             nearestTown,
             state,
             country,
-            timezone,
 
-            tripStartHour,
-            tripStartMonth,
+            tripStartTime,
             tripStartDate,
-            tripStartYear,
-            tripEndHour,
-            tripEndMonth,
+            tripEndTime,
             tripEndDate,
-            tripEndYear,
 
             firstName,
             lastName,

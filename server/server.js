@@ -42,7 +42,7 @@ app.get(`/auth/logout`, authController.logout)
 //gear endpoints
 
 //alert endpoints
-app.post(`/api/setalert`, alertController.setAlert)
+app.post(`/api/createalert`, alertController.createAlert)
 
 //listen
 app.listen(SERVER_PORT, () => {
