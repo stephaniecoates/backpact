@@ -1,5 +1,5 @@
-select * from alert_info
-where trip_end < now();
+SELECT * FROM alert_info
+WHERE trip_end < now()
+AND
+alert_text_running = 'true';
 
-
--- boolean correct value

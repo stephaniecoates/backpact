@@ -30,7 +30,9 @@ medical_issues,
 alert_contact_name,
 user_contact_relationship,
 alert_contact_number,
-alert_contact_email)
+alert_contact_email,
+alert_text_running,
+hour_countdown)
 
 values
 (
@@ -73,6 +75,8 @@ $25, --medical issues
 $26, --designated contact name
 $27,  --user contact relationship
 $28, --designated contact number
-$29 --designated contact email
+$29, --designated contact email
+'true',
+null
 )
 returning *;

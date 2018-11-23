@@ -32,6 +32,8 @@ alert_contact_name varchar(50),
 user_contact_relationship varchar(50),
 alert_contact_number text,
 alert_contact_email varchar(50),
+alert_text_running text,
+hour_countdown timestamp with time zone,
 
 FOREIGN KEY (alert_id) REFERENCES backpact_user (id)
 );
