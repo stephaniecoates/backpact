@@ -214,7 +214,7 @@ class SetAlert extends Component {
                 <h2>TRIP DATES</h2>
                 <p>I'm leaving...</p>
 
-                <button display='outlined' onClick={() => {
+                <button onClick={() => {
                     this.setState({
                         tripStartTime: todayHour,
                         tripStartDate: today,
