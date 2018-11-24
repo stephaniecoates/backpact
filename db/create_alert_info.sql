@@ -32,7 +32,8 @@ user_contact_relationship,
 alert_contact_number,
 alert_contact_email,
 alert_text_running,
-hour_countdown)
+hour_countdown,
+sos)
 
 values
 (
@@ -77,6 +78,7 @@ $27,  --user contact relationship
 $28, --designated contact number
 $29, --designated contact email
 'true',
-null
+null,
+'false'
 )
 returning *;
