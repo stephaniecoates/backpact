@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button'
 import axios from 'axios';
-import {updateUser} from './../../ducks/reducer';
+import {updateUser, updateAlert} from './../../ducks/reducer';
 
 class Header extends Component {
   
@@ -11,6 +11,7 @@ class Header extends Component {
     await axios.get(`/auth/logout`)
     let res = await axios.get(`/auth/user-data`)
     this.props.updateUser(res.data)
+    this.props.updateAlert({})
   }
 
   render() {
@@ -44,5 +45,5 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, {updateUser})(Header);
+export default connect(mapStateToProps, {updateUser, updateAlert})(Header);
 
