@@ -73,5 +73,12 @@ module.exports = {
             alertContactEmail
         ])
         res.status(200).send(createdAlert)
+    },
+    getAlertData: async (req, res) => {
+        let {id} = req.params
+        console.log('req.params.id', id)
+        let db = req.app.get('db');
+        let [activeAlert] = await db.check_for_alert([id])
+        res.status(200).send(activeAlert)
     }
 }

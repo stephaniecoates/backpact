@@ -58,6 +58,8 @@ app.get(`/auth/logout`, authController.logout)
 //alert endpoints
 app.post(`/api/createalert`, alertController.createAlert)
 
+app.get(`/api/alert-data/:id`, alertController.getAlertData)
+
 //sms endpoints
 app.post('/sms', smsController.recieveSMS)
 

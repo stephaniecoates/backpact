@@ -1,7 +1,3 @@
-//ask about <a> in navbar and authctrl
-//ask about auth warning: Warning: Cannot update during an existing state transition (such as within `render`) during redirect
-//ask about different element rendering in whitespace after login, not layout-content-7...layout-content-30 shows up
-
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -11,13 +7,16 @@ import Button from '@material-ui/core/Button'
 import './Home.css'
 
 class Home extends Component {
-
     async componentDidMount () {
+        console.log('component did mount running')
         let res = await axios.get(`/auth/user-data`)
         this.props.updateUser(res.data)
     }
+
     render () {
+        console.log('render running')
         return (
+            
             <div className='home-background'>
             <div className='home-content'>
                 <h1 className='main'>For your next backpacking adventure, give yourself (and your mom) some peace of mind.</h1>
