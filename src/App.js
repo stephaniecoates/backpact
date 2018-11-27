@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import routes from './routes';
 import { withRouter } from 'react-router-dom';
-import Auth from './components/Auth/Auth'
 import ActiveAlert from './components/ActiveAlert/ActiveAlert';
 import Header from './components/Header/Header';
 import Menu from './components/Menu/Menu';
@@ -34,8 +33,6 @@ hideModal = () => {
     };
 
     return (
-      <div className="App">
-        {this.props.location.pathname === '/login' ? <Auth /> :
           <div className='App'>
             <Modal show={this.state.show} handleClose={this.hideModal}>
             <LoginModal handleClose={this.hideModal}/>
@@ -54,8 +51,8 @@ hideModal = () => {
             <Header 
             showModal={this.showModal}/>
             {routes}
-            <ActiveAlert /></div>}
-      </div>
+            <ActiveAlert />
+            </div>
     );
   }
 }

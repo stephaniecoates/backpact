@@ -1,5 +1,4 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
 import './Modal.css'
 
 const Modal = ({ handleClose, show, children }) => {

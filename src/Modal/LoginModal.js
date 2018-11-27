@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import {updateUser} from './../ducks/reducer';
-// import './Auth.css';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -48,10 +47,10 @@ class LoginModal extends Component {
         if (response === 'loggedIn') {
             this.props.handleClose();
             this.componentDidMount();
-            this.setState({
-                username: '',
-                password: ''
-            });
+            // this.setState({
+            //     username: '',
+            //     password: ''
+            // });
         } else {
             this.setState({
                 errMsg: response
@@ -69,10 +68,11 @@ class LoginModal extends Component {
         if (response === 'loggedIn') {
             this.props.handleClose();
             this.componentDidMount()
-            this.setState({
-                username: '',
-                password: ''
-            })
+            // this.setState({
+            //     username: '',
+            //     password: ''
+            // })
+            //figure out why username and pass text stays in inputs after logging in and logging out
         } else {
             this.setState({
                 errMsg: response
@@ -84,7 +84,6 @@ class LoginModal extends Component {
         console.log(this.state)
         return (
             <div>
-
                     <div className='background'>
                     <br/>
                     <div className='login-box'>

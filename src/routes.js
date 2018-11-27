@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Auth from './components/Auth/Auth';
 import Home from './components/Home/Home';
 import HikeDashboard from './components/Hikes/HikeDashboard';
 import GearDashboard from './components/Gear/GearDashboard';
@@ -11,7 +10,6 @@ import HikerResources from './components/HikerResources/HikerResources';
 export default (
     <Switch>
         <Route exact path='/' component={Home}/>
-        <Route path='/login' component={Auth}/>
         <Route path='/hikes' component={HikeDashboard}/>
         <Route path='/gear' component={GearDashboard}/>
         <Route path='/setalert' component={SetAlert}/>
