@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {updateUser} from './../ducks/reducer';
+import {updateUser, hideModal, updateAlert} from './../ducks/reducer';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -32,10 +32,14 @@ class LoginModal extends Component {
         })
     }
 
-    async componentDidMount() {
-        let res = await axios.get(`/auth/user-data`)
-        this.props.updateUser(res.data)
+    componentDidUpdate (prevProps) {
+        if ((prevProps.user !== this.props.user) && this.props.user.id) {
+            axios.get(`/api/alert-data/${this.props.user.id}`)
+            .then(res => {
+                this.props.updateAlert(res.data)
+        })
     }
+}
 
     async login() {
         if (!this.state.username || !this.state.password) return alert(`Please enter a username and password.`)
@@ -45,12 +49,9 @@ class LoginModal extends Component {
         })
         let response = res.data.message
         if (response === 'loggedIn') {
-            this.props.handleClose();
-            this.componentDidMount();
-            // this.setState({
-            //     username: '',
-            //     password: ''
-            // });
+            this.props.hideModal();
+            let userRes = await axios.get(`/auth/user-data`)
+            this.props.updateUser(userRes.data)
         } else {
             this.setState({
                 errMsg: response
@@ -66,13 +67,9 @@ class LoginModal extends Component {
         })
         let response = res.data.message
         if (response === 'loggedIn') {
-            this.props.handleClose();
-            this.componentDidMount()
-            // this.setState({
-            //     username: '',
-            //     password: ''
-            // })
-            //figure out why username and pass text stays in inputs after logging in and logging out
+            this.props.hideModal();
+            let userRes = await axios.get(`/auth/user-data`)
+            this.props.updateUser(userRes.data)
         } else {
             this.setState({
                 errMsg: response
@@ -81,7 +78,6 @@ class LoginModal extends Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div>
                     <div className='background'>
@@ -109,10 +105,11 @@ class LoginModal extends Component {
 }
 
 function mapStateToProps(state) {
-    const { user } = state
+    const { user, alert } = state
     return {
-        user
+        user,
+        alert
     }
 }
 
-export default withRouter(connect(mapStateToProps, {updateUser})(LoginModal));
+export default withRouter(connect(mapStateToProps, {updateUser, hideModal, updateAlert})(LoginModal));

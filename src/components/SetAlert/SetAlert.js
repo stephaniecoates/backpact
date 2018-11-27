@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { updateUser, updateAlert } from '../../ducks/reducer';
+import { updateUser, updateAlert, showModal, hideModal } from '../../ducks/reducer';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import * as moment from 'moment';
 // import 'moment-timezone';
-
+import Modal from './../../Modal/Modal'
+import LoginModal from './../../Modal/LoginModal'
 
 class SetAlert extends Component {
     constructor() {
@@ -53,14 +54,22 @@ class SetAlert extends Component {
         }
     }
 
-    async componentDidMount() {
-        let res = await axios.get(`/auth/user-data`)
-        this.props.updateUser(res.data)
-        this.setState({
-            alertId: res.data.id
-        })
+    componentDidMount () {
+        if (!this.props.user.id) {
+            this.props.showModal()
+       
     }
+}
 
+    componentDidUpdate(prevProps) {
+        if (prevProps.user.id !== this.props.user.id)
+        this.setState({
+            alertId: this.props.user.id
+        })
+        if (this.props.user.id) {
+            this.props.hideModal();
+        }
+    }
 
 
     editAlert () {
@@ -190,12 +199,21 @@ class SetAlert extends Component {
         this.props.updateAlert(alertRes.data)
     }
 
+
     render() {
         var today = moment().format("YYYY-MM-DD")
         var todayHour = moment().format("HH:mm")
         return (
-            <div>
-            {this.props.alert.trail_name &&
+            <div style={{overflow: 'hidden'}}>
+            {!this.props.user.id && <Modal><LoginModal/></Modal>}
+
+ 
+            {!this.props.user.id ? 
+            <div style={{padding: '50px', width: '40vw', height: '40vh', margin: '100px auto', border: '3px solid black'}}>Please log in first to create an alert.</div> 
+            : 
+
+            this.props.alert.trail_name ?
+
             <div style={{height: '30vh', width: '30vw', margin: '100px auto', border: '2px solid black'}}>
             <p>ALERT SET: </p>
             <p>{this.props.alert.trail_name}</p>
@@ -203,10 +221,9 @@ class SetAlert extends Component {
             <p>{this.props.alert.trip_end}</p>
             <button onClick={() => this.editAlert()}>Edit Alert</button>
             <button onClick={() => this.deleteAlert()}>Delete Alert</button>
-            </div>}
+            </div>
 
-            {!this.props.user.id && <p>please log in first</p>}
- 
+            :
             <form style={{ margin: '30px' }}>
                 <h2>TRAIL INFO</h2>
                 <TextField
@@ -491,7 +508,7 @@ class SetAlert extends Component {
                 </div>
                 <Button variant='contained' style={{ margin: '30px', color: 'white', backgroundColor: 'black' }} onClick={() => this.setAlert()}>Set Alert</Button>
                 <Typography variant='caption'>If you don't cancel the alert before your expected return time, we'll text you first to check on you before alerting your designated contact. If we don't hear back from you within in hour - or, if you text us back 'SOS', that's when we alert your contact and email them your trip itinerary and personal info. </Typography>
-            </form> 
+            </form>} 
             </div>
             
         )
@@ -499,11 +516,12 @@ class SetAlert extends Component {
 }
 
 function mapStateToProps(state) {
-    const { user, alert } = state
+    const { user, alert, modalVisible } = state
     return {
         user,
-        alert
+        alert,
+        modalVisible
     }
 }
 
-export default connect(mapStateToProps, { updateUser, updateAlert })(SetAlert);
+export default connect(mapStateToProps, { updateUser, updateAlert, showModal, hideModal })(SetAlert);

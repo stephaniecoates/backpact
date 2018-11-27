@@ -1,20 +1,39 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
 import { updateUser, updateAlert } from './../../ducks/reducer';
 
 
 class ActiveAlert extends Component {
+    constructor () {
+        super();
 
-    async componentDidMount() {
-        let res = await axios.get(`/auth/user-data`)
-        this.props.updateUser(res.data)
-        if (this.props.user.id) {
-            let alertRes = await axios.get(`/api/alert-data/${this.props.user.id}`)
-            this.props.updateAlert(alertRes.data)
+        this.state = {
+            userId: '',
+            alertTrailName: '',
+            alertTripEnd: ''
         }
     }
+
+    componentDidMount () {
+        this.setState({
+            userId: this.props.user.id,
+            alertTrailName: this.props.alert.trailName,
+            alertTripEnd: this.props.alert.trip_end
+        })
+    }
+
+  componentDidUpdate(prevProps) {
+      if (prevProps !== this.props) {
+        this.setState({
+            userId: this.props.user.id,
+            alertTrailName: this.props.alert.trailName,
+            alertTripEnd: this.props.alert.trip_end
+        })
+        
+      }
+    }
+    
 
     render() {
         return this.props.alert.alert_id ? <div

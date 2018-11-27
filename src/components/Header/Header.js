@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button'
 import axios from 'axios';
-import {updateUser, updateAlert} from './../../ducks/reducer';
+import {updateUser, updateAlert, showModal} from './../../ducks/reducer';
+import Modal from "./../../Modal/Modal";
+import LoginModal from "./../../Modal/LoginModal";
 
 class Header extends Component {
 
@@ -31,10 +33,12 @@ class Header extends Component {
                   </div>
                   :
                   <div style={{display: 'flex', alignItems: 'center'}}>
-                    <Button variant='contained' style={{ color: 'black', backgroundColor: 'white', marginRight: '50px' }} onClick={this.props.showModal}>Log In / Register</Button>
+                    <Button variant='contained' style={{ color: 'black', backgroundColor: 'white', marginRight: '50px' }} onClick={() => this.props.showModal()}>Log In / Register</Button>
                   </div>}
               </div>
-
+          <Modal >
+          <LoginModal/>
+          </Modal>
             
         </div>
       </header>
@@ -43,11 +47,12 @@ class Header extends Component {
 }
 
 function mapStateToProps(state) {
-  let { user } = state
+  let { user, modalVisible } = state
   return {
-      user
+      user,
+      modalVisible
   }
 }
 
-export default connect(mapStateToProps, {updateUser, updateAlert})(Header);
+export default connect(mapStateToProps, {updateUser, updateAlert, showModal})(Header);
 

@@ -1,19 +1,30 @@
-import React from 'react';
-import './Modal.css'
+import React, {Component} from 'react';
+import './Modal.css';
+import {hideModal} from './../ducks/reducer'
+import {connect} from 'react-redux';
 
-const Modal = ({ handleClose, show, children }) => {
-    const showHideClassName = show ? "modal display-block" : "modal display-none"
-    //actions can be housed as buttons with functions inside of children
+class Modal extends Component {
+
+  render () {
+    const showHideClassName = this.props.modalVisible ? "modal display-block" : "modal display-none"
     return (
       <div className={showHideClassName}>
         <section className="modal-main">
-          {children}
-         <button onClick={handleClose}>Close</button>
+          {this.props.children}
+         <button onClick={() => this.props.hideModal()}>Close</button>
         </section>
       </div>
       
     );
 };
+}
+
+function mapStateToProps (state) {
+  let {modalVisible} = state
+  return {
+    modalVisible
+  }
+}
 
 
-export default Modal;
+export default connect(mapStateToProps, {hideModal})(Modal);
