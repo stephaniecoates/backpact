@@ -1,15 +1,7 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
-import {updateUser} from './../../ducks/reducer';
 
 class FinalChecklist extends Component {
-    
-    componentDidMount = async () => {
-        let res = await axios.get(`/auth/user-data`)
-        console.log('finalchecklist component user', res.data)
-        this.props.updateUser(res.data)
-    }
 
     render () {
         return (
@@ -27,4 +19,4 @@ function mapStateToProps (state) {
     }
 }
 
-export default connect(mapStateToProps, {updateUser})(FinalChecklist);
+export default connect(mapStateToProps, {})(FinalChecklist);

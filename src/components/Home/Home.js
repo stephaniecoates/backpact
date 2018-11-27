@@ -1,20 +1,12 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
-import {updateUser} from './../../ducks/reducer';
 import {connect} from 'react-redux';
 import Button from '@material-ui/core/Button'
 import './Home.css'
 
 class Home extends Component {
-    async componentDidMount () {
-        console.log('component did mount running')
-        let res = await axios.get(`/auth/user-data`)
-        this.props.updateUser(res.data)
-    }
-
+ 
     render () {
-        console.log('render running')
         return (
             
             <div className='home-background'>
@@ -26,8 +18,7 @@ class Home extends Component {
                     <Button style={{padding: '10px', margin: '10px'}} variant='outlined' component={Link} to='/gear'>Pack your Pack</Button>
                     <Button style={{padding: '10px', margin: '10px'}} variant='outlined' component={Link} to='/setalert'>Set an Alert</Button>
                     </div>
-                    : <div className='login-button'><Button variant='outlined' size='large' component={Link} to='/login' className='login-button'>Log In / Register</Button></div>
-
+                    : null
                     }
                     </div>
             </div>
@@ -42,4 +33,4 @@ function mapStateToProps (state) {
     }
 }
 
-export default connect(mapStateToProps, {updateUser})(Home);
+export default connect(mapStateToProps, {})(Home);

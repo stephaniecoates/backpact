@@ -5,7 +5,8 @@ const session = require('express-session');
 var cron = require('node-cron');
 var twilio = require('twilio');
 const bodyParser = require('body-parser');
-var moment = require('moment');
+var moment = require('moment-timezone');
+
 const nodemailer = require('nodemailer');
 
 const authController = require('./controllers/authController');
@@ -68,12 +69,11 @@ cron.schedule(`* * * * *`, async () => {
     //can I move this fn for organizational purposes but still have access to db?
     let db = app.get('db');
     let expiredAlerts = await db.select_expired_alerts();
-    //sometimes db above comes up as undefined after restarting nodemon...seems like timing issue
     console.log('array of expired alerts every minute', expiredAlerts)
     expiredAlerts.forEach(alert => {
         let { first_name, user_phone_number, alert_contact_name, alert_id } = alert
         client.messages.create({
-            body: `Hey, ${first_name}! Have you returned from your trip? Text 'BACK' if you've returned safely, 'LATE' if you're just running late, or 'SOS' if you're in trouble and need help. If we don't hear from you within an hour, we'll send an alert your designated contact, ${alert_contact_name}. --Backpact Trail Alert App`,
+            body: `Hey, ${first_name}! Have you returned from your trip? Text 'BACK' if you've returned safely, 'LATE' if you're just running late, or 'SOS' if you're in trouble and need help. If we don't hear from you within an hour, we'll send an alert to your designated contact, ${alert_contact_name}. --Backpact Trail Alert App`,
             to: `+${user_phone_number}`,
             from: TWILIO_NUMBER
         })
@@ -120,7 +120,7 @@ cron.schedule(`* * * * *`, async () => {
             alert_contact_email} = alert
         //send message to designated contact
         client.messages.create({
-            body: `Hello, ${alert_contact_name}! Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} was supposed to return by today, ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("MMM do")} at ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("h:mma")}. We've emailed their trip itinerary and personal information to you at ${alert_contact_email}. If you can't get ahold of them yourself and are concerned for their safety, we recommend passing on this information to the ${state} state police to initiate a search and rescue effort. For more information: https://sectionhiker.com/how-to-report-a-missing-hiker/ --Backpact Trail Alert App`,
+            body: `Hello, ${alert_contact_name}! Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} was supposed to return by today, ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("MMM Do")} at ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("h:mma")}. We've emailed their trip itinerary and personal information to you at ${alert_contact_email}. If you can't get ahold of them yourself and are concerned for their safety, we recommend passing on this information to the ${state} state police to initiate a search and rescue effort. For more information: https://sectionhiker.com/how-to-report-a-missing-hiker/ --Backpact Trail Alert App`,
             to: `+${alert_contact_number}`,
             from: TWILIO_NUMBER
         })
@@ -158,8 +158,8 @@ cron.schedule(`* * * * *`, async () => {
                                 <p>State: ${state}</p>
                                 <p>Country: ${country}</p>
                                 <p>Trip Description: ${trip_description}</p>
-                                <p>Trip Start: ${moment(trip_start, "YYYY-MM-DDTHH:mm:ss.SS").format("dddd, MMMM Do YYYY, h:mma Z")}</p>
-                                <p>Anticipated Trip End: ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("dddd, MMMM Do YYYY, h:mma Z")}</p>
+                                <p>Trip Start: ${moment(trip_start, "YYYY-MM-DDTHH:mm:ss.SS").format("dddd, MMMM Do YYYY, h:mma")}</p>
+                                <p>Anticipated Trip End: ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("dddd, MMMM Do YYYY, h:mma")}</p>
                                 </div>
                                 <br></br>
                                 <h4>${first_name}'s Personal Information:</h4>

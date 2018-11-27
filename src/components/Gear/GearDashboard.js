@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {connect} from 'react-redux';
-import {updateUser} from './../../ducks/reducer';
 import GearList from './GearList';
 import './GearDashboard.css';
 import Button from '@material-ui/core/Button'
 
 class GearDashboard extends Component {
-
-    componentDidMount = async () => {
-        let res = await axios.get(`/auth/user-data`)
-        this.props.updateUser(res.data)
-    }
 
     render() {
         return (
@@ -36,4 +29,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { updateUser })(GearDashboard);
+export default connect(mapStateToProps, {})(GearDashboard);

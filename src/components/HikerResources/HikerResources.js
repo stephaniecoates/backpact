@@ -6,19 +6,11 @@ import FirstAid from './resources/FirstAid';
 import LNT from './resources/LNT';
 import Navigation from './resources/Navigation';
 import Nutrition from './resources/Nutrition';
-import axios from 'axios';
 import {connect} from 'react-redux';
-import {updateUser} from './../../ducks/reducer';
 
 
 
 class HikerResources extends Component {
-
-    componentDidMount = async () => {
-        let res = await axios.get(`/auth/user-data`)
-        console.log('hikerresources component user', res.data)
-        this.props.updateUser(res.data)
-    }
 
     render() {
         return (
@@ -53,4 +45,4 @@ function mapStateToProps (state) {
     }
 }
 
-export default connect(mapStateToProps, {updateUser})(HikerResources);
+export default connect(mapStateToProps, {})(HikerResources);

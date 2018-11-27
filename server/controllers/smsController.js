@@ -12,7 +12,7 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
             let db = req.app.get('db');
             if (textResponse == 'BACK') {
                 await db.delete_alert_by_user_phone_number([userNumber])
-                //what does putting await here do?
+                //if I want browser to refresh when db changes, use sockets or app.pull request to periodically check if alert is active
                 twiml.message(`Great! We've canceled your alert. We hope you had a great trip.`);
               } else if (textResponse == 'LATE') {
                 twiml.message(`Running late? No problem. Reply 'EXTEND' followed by the number of hours you'd like your anticipated return time to be postponed.`);

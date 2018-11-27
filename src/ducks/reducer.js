@@ -1,9 +1,6 @@
 //initial state
 const initialState = {
-    user: {
-        id: '',
-        username: '',
-    },
+    user: {},
     alert: {}
 }
 
