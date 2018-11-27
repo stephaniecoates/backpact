@@ -15,8 +15,8 @@ class Home extends Component {
                 <h1 className='second'>Trail Angel takes the guesswork out of trip planning.</h1>
                 {this.props.user.username ? <div className='home-buttons'>
                     <Button style={{padding: '10px', margin:'10px 10px 10px 0px'}} variant='outlined' component={Link} to='/hikes'>Find a Hike</Button> 
-                    <Button style={{padding: '10px', margin: '10px'}} variant='outlined' component={Link} to='/gear'>Pack your Pack</Button>
                     <Button style={{padding: '10px', margin: '10px'}} variant='outlined' component={Link} to='/setalert'>Set an Alert</Button>
+                    <Button style={{padding: '10px', margin: '10px'}} variant='outlined' component={Link} to='/checklist'>Trip Checklist</Button>
                     </div>
                     : null
                     }
