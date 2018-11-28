@@ -4,6 +4,7 @@ import GearList from './GearList';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
 import styled from 'styled-components';
+import {updateAlert} from './../../ducks/reducer';
 
 class ChecklistDashboard extends Component {
 
@@ -59,4 +60,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, {})(ChecklistDashboard);
+export default connect(mapStateToProps, {updateAlert})(ChecklistDashboard);
