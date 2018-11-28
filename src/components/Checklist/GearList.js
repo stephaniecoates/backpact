@@ -85,7 +85,7 @@ render () {
     return(
     gearEssentials.map((obj) => {
         return (
-        <div key={obj.itemId}>
+        <div key={obj.itemId} style={{margin: '10px 0px 10px 10px', alignContent: 'left'}}>
         <GearItem
         itemName={obj.itemName}
         />

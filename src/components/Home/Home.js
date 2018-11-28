@@ -1,26 +1,27 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
-import Button from '@material-ui/core/Button'
-import './Home.css'
-
+import {ContentBox, MainHeading, SubHead, Details, Button} from './StyledHome';
 class Home extends Component {
  
     render () {
+       
+
         return (
             
-            <div className='home-background'>
-            <div className='home-content'>
-                <h1 className='main'>For your next backpacking adventure, give yourself (and your mom) some peace of mind.</h1>
-                <h1 className='second'>Trail Angel takes the guesswork out of trip planning.</h1>
-                {this.props.user.username ? <div className='home-buttons'>
-                    <Button style={{padding: '10px', margin:'10px 10px 10px 0px'}} variant='outlined' component={Link} to='/hikes'>Find a Hike</Button> 
-                    <Button style={{padding: '10px', margin: '10px'}} variant='outlined' component={Link} to='/setalert'>Set an Alert</Button>
-                    <Button style={{padding: '10px', margin: '10px'}} variant='outlined' component={Link} to='/checklist'>Trip Checklist</Button>
+            <div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+            <ContentBox>
+                <MainHeading>Give yourself (and your mom) some peace of mind.</MainHeading>
+                <SubHead>On your next hiking adventure, let us have your back.</SubHead>
+                <Details>Backpact is a trip-planning tool designed to help you stay safe in the backcountry. Browse hikes, run through a customized trip checklist, and set up an alert to notify a designated contact if you don't return by your expected end date.</Details>
+                {this.props.user.username ? <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <Button><Link to='/hikes'>Find a Hike</Link></Button> 
+                    <Link to='/setalert'><Button>Set an Alert</Button></Link>
+                    <Link to='/checklist'><Button>Trip Checklist</Button></Link>
                     </div>
                     : null
                     }
-                    </div>
+                    </ContentBox>
             </div>
         )
     }

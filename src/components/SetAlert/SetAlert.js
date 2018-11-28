@@ -6,7 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import * as moment from 'moment';
-// import 'moment-timezone';
 import Modal from './../../Modal/Modal'
 import LoginModal from './../../Modal/LoginModal'
 
@@ -54,7 +53,9 @@ class SetAlert extends Component {
         }
     }
 
-    componentDidMount () {
+   async componentDidMount () {
+    let res = await axios.get(`/auth/user-data`)
+    this.props.updateUser(res.data)
         if (!this.props.user.id) {
             this.props.showModal()
        
@@ -201,20 +202,20 @@ class SetAlert extends Component {
 
 
     render() {
-        var today = moment().format("YYYY-MM-DD")
-        var todayHour = moment().format("HH:mm")
+        // var today = moment().format("YYYY-MM-DD")
+        // var todayHour = moment().format("HH:mm")
         return (
             <div style={{overflow: 'hidden'}}>
             {!this.props.user.id && <Modal><LoginModal/></Modal>}
 
  
             {!this.props.user.id ? 
-            <div style={{padding: '50px', width: '40vw', height: '40vh', margin: '100px auto', border: '3px solid black'}}>Please log in first to create an alert.</div> 
+            <div style={{padding: '50px', width: '40vw', height: '40vh', margin: '100px auto', border: '3px solid black', backgroundColor: 'white'}}>Please log in first to create an alert.</div> 
             : 
 
             this.props.alert.trail_name ?
 
-            <div style={{height: '30vh', width: '30vw', margin: '100px auto', border: '2px solid black'}}>
+            <div style={{height: '30vh', width: '30vw', margin: '100px auto', border: '2px solid black', backgroundColor: 'white'}}>
             <p>ALERT SET: </p>
             <p>{this.props.alert.trail_name}</p>
             <p>on</p>
@@ -224,7 +225,7 @@ class SetAlert extends Component {
             </div>
 
             :
-            <form style={{ margin: '30px' }}>
+            <form style={{ margin: '20px 150px 0px 150px', height: '80vh', padding: '30px', overflow: 'scroll', border: '1px solid grey', backgroundColor: 'rgba(255,255,255,0.7)' }}>
                 <h2>TRAIL INFO</h2>
                 <TextField
                     id="trailName"
@@ -325,13 +326,6 @@ class SetAlert extends Component {
 
                 <h2>TRIP DATES</h2>
                 <p>I'm leaving...</p>
-
-                <button onClick={() => {
-                    this.setState({
-                        tripStartTime: todayHour,
-                        tripStartDate: today,
-                    })
-                }}>right now!</button>
 
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
                     <TextField

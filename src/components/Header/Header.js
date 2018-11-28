@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import Button from '@material-ui/core/Button'
+// import Button from '@material-ui/core/Button'
 import axios from 'axios';
 import {updateUser, updateAlert, showModal} from './../../ducks/reducer';
 import Modal from "./../../Modal/Modal";
 import LoginModal from "./../../Modal/LoginModal";
+import {Button, UserGreeting, Title} from "./StyledHeader"
 
 class Header extends Component {
 
@@ -22,20 +23,18 @@ class Header extends Component {
 
   render() {
     return (
-      <header style={{width: '100vw'}}>
-        <div style={{display: 'flex', justifyContent: 'space-between', backgroundColor: "rgba(255,255,255,0.9", alignItems: 'center', height: '11vh', marginLeft: '120px'}}>
-              <h2 style={{textTransform: 'uppercase'}}>Backpact</h2>
-              <div style={{ display: 'flex', alignItems: 'center' }}>
+      <header>
+              <Title>backpact</Title>
+              <div>
                 {this.props.user.username ?
-                  <div style={{display: 'flex', alignItems: 'center'}}>
-                    <p style={{ marginRight: '15px' }}>hi, {this.props.user.username}!</p>
-                    <Button variant='contained' style={{ color: 'black', backgroundColor: 'white', maxWidth: '30px', maxHeight: '10px', fontSize: '10px'}} onClick={() => this.logout()}>Logout</Button>
+                  <div>
+                    <UserGreeting>hi, {this.props.user.username}!</UserGreeting>
+                    <Button onClick={() => this.logout()}>log out</Button>
                   </div>
                   :
-                  <div style={{display: 'flex', alignItems: 'center'}}>
-                    <Button variant='contained' style={{ color: 'black', backgroundColor: 'white', marginRight: '50px' }} onClick={() => this.props.showModal()}>Log In / Register</Button>
-                  </div>}
-              </div>
+                  
+                    <Button onClick={() => this.props.showModal()}>Log In / Register</Button>
+                }
           <Modal >
           <LoginModal/>
           </Modal>
