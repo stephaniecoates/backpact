@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
 import { updateUser, updateAlert } from './../../ducks/reducer';
+import {ActiveAlertBar, ActiveAlertText, ButtonContainer, Button} from './StyledActiveAlert';
 
 
 class ActiveAlert extends Component {
@@ -36,14 +37,13 @@ class ActiveAlert extends Component {
     
 
     render() {
-        return this.props.alert.alert_id ? <div
-            style={{ width: '100%', height: '15%', position: 'fixed', bottom: '0px', backgroundColor: 'green', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <h4>ACTIVE ALERT -- You have an alert set for the {this.props.alert.trail_name} trail that ends at {moment(this.props.alert.trip_end).format("MMMM Do YYYY [at] h:mma z")}</h4>
-            <div style={{ display: 'flex', flexDirection: 'column' }}>
-                <button>Edit Alert</button>
-                <button>Cancel Alert</button>
-            </div>
-        </div> : null
+        return this.props.alert.alert_id ? <ActiveAlertBar>
+            <ActiveAlertText>ACTIVE ALERT -- You have an alert set for the {this.props.alert.trail_name} trail that ends at {moment(this.props.alert.trip_end).format("MMMM Do YYYY [at] h:mma z")}</ActiveAlertText>
+            <ButtonContainer>
+                <Button>Edit Alert</Button>
+                <Button>Cancel Alert</Button>
+            </ButtonContainer>
+        </ActiveAlertBar> : null
 
     }
 }
