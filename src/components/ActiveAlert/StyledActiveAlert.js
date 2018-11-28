@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const ActiveAlertBar = styled.div`
 width: 100%;
 height: 15%;
-position: fixed;
+position: absolute;
 bottom: 0px;
 background-color: rgba(52, 61, 45, 0.8);
 border-radius: 30px 30px 0px 0px;

@@ -1,9 +1,7 @@
 module.exports = {    
     createAlert: async (req, res) => {
-        console.log(req.body)
         let {
             alertId,
-
             trailName,
             trailType,
             trailGroup,
@@ -34,7 +32,7 @@ module.exports = {
             alertContactName,
             userContactRelationship,
             alertContactNumber,
-            alertContactEmail
+            alertContactEmail,
         } = req.body;
 
         let db = req.app.get('db');
@@ -80,6 +78,78 @@ module.exports = {
         let db = req.app.get('db');
         let [activeAlert] = await db.check_for_alert([id])
         res.status(200).send(activeAlert)
+    },
+    editAlert: async (req, res) => {
+        let {
+            trailName,
+            trailType,
+            trailGroup,
+            wildernessArea,
+            startingTrailhead,
+            endingTrailhead,
+            roundtripDistance,
+            nearestTown,
+            state,
+            country,
+            tripDescription,
+
+            tripStart,
+            tripEnd,
+
+            firstName,
+            lastName,
+            age,
+            userPhoneNumber,
+            gender,
+            height,
+            weight,
+            hairColor,
+            clothingDescription,
+            medications,
+            medicalIssues,
+
+            alertContactName,
+            userContactRelationship,
+            alertContactNumber,
+            alertContactEmail,
+            alertId
+        } = req.body;
+            let db = req.app.get('db');
+            let [updatedAlert] = await db.update_alert([
+                trailName,
+                trailType,
+                trailGroup,
+                wildernessArea,
+                startingTrailhead,
+                endingTrailhead,
+                roundtripDistance,
+                nearestTown,
+                state,
+                country,
+                tripDescription,
+    
+                tripStart,
+                tripEnd,
+    
+                firstName,
+                lastName,
+                age,
+                userPhoneNumber,
+                gender,
+                height,
+                weight,
+                hairColor,
+                clothingDescription,
+                medications,
+                medicalIssues,
+    
+                alertContactName,
+                userContactRelationship,
+                alertContactNumber,
+                alertContactEmail,
+                alertId
+            ])
+            res.status(200).send(updatedAlert)
     },
     deleteAlert: async (req, res) => {
         let {id} = req.params

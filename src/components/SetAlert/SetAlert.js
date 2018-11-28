@@ -166,7 +166,7 @@ class SetAlert extends Component {
     }
 
     async submitEditedAlert() {
-        let res = await axios.put('/api/editalert', {
+            await axios.put('/api/editalert', {
             alertId: this.state.alertId,
             trailName: this.state.trailName,
             trailType: this.state.trailType,
@@ -202,8 +202,6 @@ class SetAlert extends Component {
         })
         let alertRes = await axios.get(`/api/alert-data/${this.props.user.id}`)
         this.props.updateAlert(alertRes.data)
-        console.log('returned edited alert from db', res.data)
-        console.log('updated edited alert from redux', alertRes.data)
     }
 
     async cancelAlert () {
@@ -222,7 +220,6 @@ class SetAlert extends Component {
     
 
     render() {
-        console.log('props', this.props)
         // var today = moment().format("YYYY-MM-DD")
         // var todayHour = moment().format("HH:mm")
         return (
@@ -238,7 +235,7 @@ class SetAlert extends Component {
 
                     //editing edit-alert-branch
 
-                    this.props.alert.trail_name /* && this.state.canEdit === false */ ?
+                    this.props.alert.trail_name ?
 
                         <div style={{ height: '60vh', width: '40vw', margin: 'auto', boxShadow: '-2px 2px 1px', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
                             <p>You've got an active alert!</p>
