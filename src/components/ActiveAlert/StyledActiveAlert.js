@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ActiveAlertBar = styled.p`
+export const ActiveAlertBar = styled.div`
 width: 100%;
 height: 15%;
 position: fixed;

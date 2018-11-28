@@ -9,7 +9,7 @@ class Home extends Component {
 
         return (
             
-            <div style={{height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+            <div style={{height: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
             <ContentBox>
                 <MainHeading>Give yourself (and your mom) some peace of mind.</MainHeading>
                 <SubHead>On your next hiking adventure, let us have your back.</SubHead>

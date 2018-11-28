@@ -5,7 +5,7 @@ import axios from 'axios';
 import {updateUser, updateAlert, showModal} from './../../ducks/reducer';
 import Modal from "./../../Modal/Modal";
 import LoginModal from "./../../Modal/LoginModal";
-import {Button, UserGreeting, Title} from "./StyledHeader"
+import {Button, UserGreeting, Title, InvisibleHeader} from "./StyledHeader"
 
 class Header extends Component {
 
@@ -23,7 +23,7 @@ class Header extends Component {
 
   render() {
     return (
-      <header>
+      <InvisibleHeader>
               <Title>backpact</Title>
               <div>
                 {this.props.user.username ?
@@ -40,7 +40,7 @@ class Header extends Component {
           </Modal>
             
         </div>
-      </header>
+      </InvisibleHeader>
     );
   }
 }

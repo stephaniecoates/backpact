@@ -1,5 +1,13 @@
 import styled from "styled-components"
 
+export const InvisibleHeader = styled.div`
+height: 18%
+
+@media (max-width: 600px) {
+  height: 10%;
+}
+`
+
     export const Title = styled.h1`
     position: absolute; 
     top: 20px;
@@ -23,6 +31,7 @@ import styled from "styled-components"
     min-height: 25px;
     background: black;
     border-radius: 3px;
+    text-transform: uppercase;
     border: 2px solid black;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
     color: white;
@@ -32,7 +41,7 @@ import styled from "styled-components"
     
 
     @media (max-width: 600px) {
-    top: 16px;
+    top: 22px;
     right: 2px;
     min-width: 15px;
     min-height: 10px;
@@ -45,14 +54,14 @@ import styled from "styled-components"
     color: white;
     position: absolute;
     top: 40px;
-    right: 120px;
+    right: 135px;
 
     @media (max-width: 600px) {
     font-size: 11px;
     margin: 4px 0px;
     color: white;
     position: absolute;
-    top: 0px;
+    top: 5px;
     right: 18px;
     }
     `

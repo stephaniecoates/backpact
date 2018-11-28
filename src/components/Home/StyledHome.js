@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const ContentBox = styled.div`
-height: 50%;
+height: 60%;
 width: 50%;
 background-color: rgba(255, 255, 255, 0.4);
 box-shadow: -3px 3px black;  
@@ -10,13 +10,13 @@ flex-direction: column;
 justify-content: center;
 
 
-@media (max-width: 665px) {
-    width: 70%;
+@media (max-width: 600px) {
+    width: 65%;
 }
 
 @media (max-width: 420px) {
     width: 100%;
-    height: 40%;
+    height: 50%;
 }
 `
 export const MainHeading = styled.h1`

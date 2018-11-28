@@ -14,7 +14,7 @@ class SetAlert extends Component {
         super();
 
         this.state = {
-            alertId: 0,
+            alertId: '',
 
             trailName: '',
             trailType: '',
@@ -54,11 +54,12 @@ class SetAlert extends Component {
     }
 
    async componentDidMount () {
-    let res = await axios.get(`/auth/user-data`)
-    this.props.updateUser(res.data)
-        if (!this.props.user.id) {
-            this.props.showModal()
-       
+       if (this.props.user.id) {
+           this.setState({
+               alertId: this.props.user.id
+           })
+       } else {
+            this.props.showModal()  
     }
 }
 
@@ -75,7 +76,7 @@ class SetAlert extends Component {
 
     editAlert () {
         this.setState({
-            alertId: this.props.user.id,
+            alertId: this.state.alertId,
             trailName: this.props.alert.trail_name,
             trailType: this.props.alert.trail_type,
             trailGroup: this.props.alert.trail_group,
@@ -210,22 +211,19 @@ class SetAlert extends Component {
 
  
             {!this.props.user.id ? 
-            <div style={{padding: '50px', width: '40vw', height: '40vh', margin: '100px auto', border: '3px solid black', backgroundColor: 'white'}}>Please log in first to create an alert.</div> 
+            <div style={{padding: '50px', width: '40vw', height: '30vh', margin: '100px auto', border: '3px solid black', backgroundColor: 'rgba(255, 255, 255, 0.5)'}}>Please log in first to create an alert.</div> 
             : 
 
             this.props.alert.trail_name ?
 
-            <div style={{height: '30vh', width: '30vw', margin: '100px auto', border: '2px solid black', backgroundColor: 'white'}}>
-            <p>ALERT SET: </p>
-            <p>{this.props.alert.trail_name}</p>
-            <p>on</p>
-            <p>{this.props.alert.trip_end}</p>
-            <button onClick={() => this.editAlert()}>Edit Alert</button>
-            <button onClick={() => this.deleteAlert()}>Delete Alert</button>
+            <div style={{height: '60vh', width: '40vw', margin: 'auto', boxShadow: '-2px 2px 1px', backgroundColor: 'rgba(255, 255, 255, 0.5)'}}>
+            <p>Your alert is active!</p>
+            <p>display full alert data here</p>
+            <p>You can only set one alert at a time. If you'd like to make a change, edit or delete your alert below.</p>
             </div>
 
             :
-            <form style={{ margin: '20px 150px 0px 150px', height: '80vh', padding: '30px', overflow: 'scroll', border: '1px solid grey', backgroundColor: 'rgba(255,255,255,0.7)' }}>
+            <form style={{ margin: '0px 100px', height: '65vh', padding: '30px', overflow: 'scroll', border: '1px solid grey', backgroundColor: 'rgba(255,255,255,0.7)' }}>
                 <h2>TRAIL INFO</h2>
                 <TextField
                     id="trailName"

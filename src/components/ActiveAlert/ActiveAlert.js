@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import {withRouter} from 'react-router-dom'
 import { connect } from 'react-redux';
 import * as moment from 'moment';
 import { updateUser, updateAlert } from './../../ducks/reducer';
 import {ActiveAlertBar, ActiveAlertText, ButtonContainer, Button} from './StyledActiveAlert';
+import axios from 'axios';
 
 
 class ActiveAlert extends Component {
@@ -34,6 +36,13 @@ class ActiveAlert extends Component {
         
       }
     }
+
+    async cancelAlert () {
+        console.log(this.props.alert.alert_id)
+        axios.delete(`/api/deletealert/${this.props.alert.alert_id}`)
+        this.props.updateAlert({})
+        this.props.history.push('/')
+    }
     
 
     render() {
@@ -41,7 +50,7 @@ class ActiveAlert extends Component {
             <ActiveAlertText>ACTIVE ALERT -- You have an alert set for the {this.props.alert.trail_name} trail that ends at {moment(this.props.alert.trip_end).format("MMMM Do YYYY [at] h:mma z")}</ActiveAlertText>
             <ButtonContainer>
                 <Button>Edit Alert</Button>
-                <Button>Cancel Alert</Button>
+                <Button onClick={() => this.cancelAlert()}>Cancel Alert</Button>
             </ButtonContainer>
         </ActiveAlertBar> : null
 
@@ -56,4 +65,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { updateUser, updateAlert })(ActiveAlert);
+export default withRouter(connect(mapStateToProps, { updateUser, updateAlert })(ActiveAlert));

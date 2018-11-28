@@ -3,13 +3,20 @@ import {connect} from 'react-redux';
 import GearList from './GearList';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
+import styled from 'styled-components';
 
 class ChecklistDashboard extends Component {
 
     render() {
+        const DashboardContainer = styled.div`
+        height: 75vh;
+        display: flex;
+        justify-content: space-between;
+        `
+
+
         return (
-            <div>
-            <div className = 'dashboard-container' style={{height: '75vh', display: 'flex', justifyContent: 'space-between'}}>
+            <DashboardContainer>
             <div style={{margin: '0px 30px', width: '75%'}}>
             <p>Trip Checklist</p>
             <div className='gear-container' style={{display: 'flex', height: '60vh', flexDirection: 'column', alignItems: 'flex-start', flexWrap: 'nowrap', border: '2px solid black', overflow: 'scroll'}}>
@@ -40,8 +47,7 @@ class ChecklistDashboard extends Component {
             </div>
             </div>
 
-            </div>
-            </div>
+            </DashboardContainer>
         )
     }
 }

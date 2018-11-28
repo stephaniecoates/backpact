@@ -80,5 +80,12 @@ module.exports = {
         let db = req.app.get('db');
         let [activeAlert] = await db.check_for_alert([id])
         res.status(200).send(activeAlert)
+    },
+    deleteAlert: async (req, res) => {
+        let {id} = req.params
+        console.log('delete id', id)
+        let db = req.app.get('db');
+        db.delete_alert([id]);
+        res.sendStatus(200)
     }
 }

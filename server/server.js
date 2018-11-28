@@ -61,6 +61,8 @@ app.post(`/api/createalert`, alertController.createAlert)
 
 app.get(`/api/alert-data/:id`, alertController.getAlertData)
 
+app.delete(`/api/deletealert/:id`, alertController.deleteAlert)
+
 //sms endpoints
 app.post('/sms', smsController.recieveSMS)
 
