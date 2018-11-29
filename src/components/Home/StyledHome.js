@@ -2,9 +2,9 @@ import styled from "styled-components"
 
 export const ContentBox = styled.div`
 width: 50%;
-max-width: 745px;
+max-width: 500px;
 padding: 20px;
-background-color: rgba(255, 255, 255, 0.35);
+background-color: rgba(255, 255, 255, 0.45);
 box-shadow: -3px 3px black;  
 
 
@@ -32,7 +32,7 @@ margin: 15px 15px 5px 15px;
 }
 `
 export const SubHead = styled.h4`
-text-transform: uppercase;
+
 font-size: 1em;
 text-align: left;
 margin: 10px 15px;
@@ -43,16 +43,16 @@ margin: 10px 15px;
 `
 
 export const Details = styled.p`
-font-size: 0.8em;
+font-size: 0.9em;
 text-align: left;
 margin: 5px 15px 10px 15px;
 
 @media (max-width: 1000px) {
-    font-size: .7em
+    font-size: .8em
 }
 
 @media (max-width: 370px) {
-    font-size: .5em
+    font-size: .7em
 }
 
 `

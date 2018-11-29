@@ -1,12 +1,11 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import {connect} from 'react-redux';
-import {updateUser, hideModal, updateAlert} from './../ducks/reducer';
-import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import { updateUser, hideModal, updateAlert } from './../ducks/reducer';
 import TextField from '@material-ui/core/TextField';
-import Typography from '@material-ui/core/Typography';
-import {withRouter} from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 
 
 class LoginModal extends Component {
@@ -32,14 +31,14 @@ class LoginModal extends Component {
         })
     }
 
-    componentDidUpdate (prevProps) {
+    componentDidUpdate(prevProps) {
         if ((prevProps.user !== this.props.user) && this.props.user.id) {
             axios.get(`/api/alert-data/${this.props.user.id}`)
-            .then(res => {
-                this.props.updateAlert(res.data)
-        })
+                .then(res => {
+                    this.props.updateAlert(res.data)
+                })
+        }
     }
-}
 
     async login() {
         if (!this.state.username || !this.state.password) return alert(`Please enter a username and password.`)
@@ -78,28 +77,62 @@ class LoginModal extends Component {
     }
 
     render() {
+        const LoginHeader = styled.h1`
+        margin-top: 30px;
+        text-transform: lowercase;
+        letter-spacing: 1px;
+        `
+        const LoginSubhead = styled.p`
+        padding: 5px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 0.8em;
+        color: grey;
+        margin: 0px 15px;
+        `
+
+        const Button = styled.button`
+        padding: 8px 20px;
+        font-size: 16px;
+        border: none;
+        box-shadow: -1px 1px 2px black;  
+         margin: 10px 6px;
+         box-sizing: border-box;
+         text-transform: uppercase;
+         font-family: 'Roboto';
+         color: white;
+         text-align: center;
+        background-color: black;
+        border-radius: 4px;
+
+        }
+      `
+
+    const ErrMsg = styled.p`
+    color: red;
+    font-size: 0.5em;
+    margin: 0px;
+    `
         return (
-            <div>
-                    <div className='background'>
-                    <br/>
-                    <div className='login-box'>
-                    <Typography variant='h5' style={{marginTop: '30px', textTransform: 'lowercase', letterSpacing: '2px', fontFamily: 'Roboto'}}>Trail Angel</Typography>
-                    <Typography variant='caption' style={{textTransform: 'uppercase', width: '300px', margin: '20px auto 5px auto'}}>Log in or create an account to <br/> start planning your adventure.</Typography>
-                
-                    <div className='input-box' style={{marginTop: '-10px'}}>
+           
+                    <div>
+                        <LoginHeader>Backpact</LoginHeader>
+                        <LoginSubhead>Log in or create an account to start planning your adventure.</LoginSubhead>
+
+
                         <TextField required id='username-input' label='username' margin='dense' onChange={(e) => this.updateUsername(e.target.value)} />
-                        <br/>
-                        <TextField required id='password-input' type='password' label='password' margin='dense'  onChange={(e) => this.updatePassword(e.target.value)} />
-                        </div>
-                        {this.state.errMsg ? <p style={{color: "red", fontSize: "9px", width: '250px', margin: '0px auto'}}>{this.state.errMsg}</p> : null}
-                        <br />
-                        <div className='button'>
-                        <Button variant='contained' onClick={() => this.login()}>Log In</Button>
-                        <Button variant='contained' onClick={() => this.register()}>Register</Button>
-                        </div>
-                        </div>
+                    
+                        <TextField required id='password-input' type='password' label='password' margin='dense' onChange={(e) => this.updatePassword(e.target.value)} />
+
+                        {this.state.errMsg ? <ErrMsg>{this.state.errMsg}</ErrMsg> : null}
+                       
+                        <div>
+                            <Button onClick={() => this.login()}>Log In</Button>
+                            <Button onClick={() => this.register()}>Register</Button>
+                            </div>
+              
                     </div>
-            </div>
+             
         )
     }
 }
@@ -112,4 +145,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default withRouter(connect(mapStateToProps, {updateUser, hideModal, updateAlert})(LoginModal));
+export default withRouter(connect(mapStateToProps, { updateUser, hideModal, updateAlert })(LoginModal));

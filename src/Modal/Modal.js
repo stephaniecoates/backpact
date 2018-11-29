@@ -10,8 +10,8 @@ class Modal extends Component {
     return (
       <div className={showHideClassName}>
         <section className="modal-main">
+      <button style={{float: 'right'}}onClick={() => this.props.hideModal()}>Close</button>
           {this.props.children}
-         <button onClick={() => this.props.hideModal()}>Close</button>
         </section>
       </div>
       

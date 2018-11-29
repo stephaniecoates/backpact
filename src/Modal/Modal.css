@@ -1,43 +1,7 @@
-/* .modal-container {
-    display: flex;
-    background-color: rgba(255, 255, 255, 0.5);
-    position: fixed;
-
-    z-index: 70;
-    line-height: 24px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-  }
-  .modal-card {
-    padding: 40px 30px 20px 50px;
-    width: 550px;
-  }
-    
-    
-    .modal-card .h1 {
-      font-size: 35px;
-      margin: 0 0 20px 0;
-    }
-  
-  .modal-content {
-    margin: 30px 0;
-  }
-
-  .modal-actions-container {
-    display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-between;
-  }
-    button {
-      font-size: 18px;
-      padding: 7px 30px;
-    } */
   
     .modal {
         position: fixed;
-        z-index: 1000;
+        z-index: 2000;
         top: 0;
         left: 0;
         width:100%;
@@ -47,10 +11,11 @@
       
       .modal-main {
         position:fixed;
-        z-index: 1001;
+        z-index: 2001;
         background: white;
-        z-index: 1001;
-        width: 80%;
+        z-index: 2001;
+        width: 30%;
+        min-width: 300px;
         height: auto;
         top:50%;
         left:50%;
