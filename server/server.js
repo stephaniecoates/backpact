@@ -43,6 +43,7 @@ massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
 })
 
+//connect server to build folder
 app.use( express.static( `${__dirname}/../build` ) );
 
 //auth endpoints
