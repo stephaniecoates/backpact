@@ -43,6 +43,8 @@ massive(CONNECTION_STRING).then(db => {
     app.set('db', db)
 })
 
+app.use( express.static( `${__dirname}/../build` ) );
+
 //auth endpoints
 app.post(`/auth/register`, authController.register)
 
