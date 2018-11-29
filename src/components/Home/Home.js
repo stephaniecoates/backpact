@@ -9,18 +9,16 @@ class Home extends Component {
 
         return (
             
-            <div style={{height: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'flex-end'}}>
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'flex-end', marginTop: '60px'}}>
             <ContentBox>
                 <MainHeading>Give yourself (and your mom) some peace of mind.</MainHeading>
                 <SubHead>On your next hiking adventure, let us have your back.</SubHead>
                 <Details>Backpact is a trip-planning tool designed to help you stay safe in the backcountry. Browse hikes, run through a customized trip checklist, and set up an alert to notify a designated contact if you don't return by your expected end date.</Details>
-                {this.props.user.username ? <div style={{display: 'flex', justifyContent: 'center'}}>
+                <div style={{display: 'flex', justifyContent: 'center'}}>
                     <Button><Link to='/hikes'>Find a Hike</Link></Button> 
                     <Link to='/setalert'><Button>Set an Alert</Button></Link>
                     <Link to='/checklist'><Button>Trip Checklist</Button></Link>
                     </div>
-                    : null
-                    }
                     </ContentBox>
             </div>
         )

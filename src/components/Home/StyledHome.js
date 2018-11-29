@@ -1,13 +1,11 @@
 import styled from "styled-components"
 
 export const ContentBox = styled.div`
-height: 60%;
 width: 50%;
-background-color: rgba(255, 255, 255, 0.4);
+max-width: 745px;
+padding: 20px;
+background-color: rgba(255, 255, 255, 0.35);
 box-shadow: -3px 3px black;  
-display: flex;
-flex-direction: column;
-justify-content: center;
 
 
 @media (max-width: 600px) {

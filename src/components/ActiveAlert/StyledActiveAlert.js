@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 export const ActiveAlertBar = styled.div`
 width: 100%;
-height: 15%;
-position: absolute;
+height: 8%;
+position: fixed;
 bottom: 0px;
-background-color: rgba(52, 61, 45, 0.8);
+background-color: rgba(44, 56, 37, 0.7);
 border-radius: 30px 30px 0px 0px;
 color: white;
 display: flex;
@@ -15,11 +15,11 @@ margin-bottom: 0px;
 `
 
 export const ActiveAlertText = styled.p`
-font-size: 14px;
+font-size: 12px;
 margin: 20px;
 
-@media (max-width: 500px) {
-font-size: 10px;
+@media (max-width: 600px) {
+font-size: 8px;
 }
 `
 
@@ -27,15 +27,16 @@ export const ButtonContainer = styled.div`
 display: flex;
 margin-right: 20px;
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
   flex-direction: column;
 }
 `
 
 export const Button = styled.button`
 
-padding: 10px 15px;
-font-size: 10px;
+padding: 8px 4px;
+min-width: 100px;
+font-size: 12px;
 border: none;
 box-shadow: -1px 1px 2px black;  
  margin: 8px;
@@ -48,10 +49,9 @@ background-color: black;
 border-radius: 4px;
 
 }
-@media (max-width: 500px) {
-font-size: 6px;
-padding: 5px 10px;
+@media (max-width: 600px) {
+font-size: 8px;
+padding: 4px 0px;
 margin: 3px;
 }
-
 `

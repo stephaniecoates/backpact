@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import GearItem from './GearItem';
+import React from 'react';
+import {GearItem} from './StyledChecklist';
 
 const gearEssentials = [
     {itemId: 1, itemName: 'Backpack', },
@@ -52,7 +52,7 @@ const gearEssentials = [
     {itemId: 48, itemName: 'Toilet Paper'},
     {itemId: 49, itemName: 'Wet Wipes'},
     {itemId: 50, itemName: 'Menstrual Products'},
-    {itemId: 51, itemName: 'Prescription medications'},
+    {itemId: 51, itemName: 'Prescription meds'},
     {itemId: 52, itemName: 'Extra Contacts'},
     {itemId: 53, itemName: 'Glasses'},
     {itemId: 54, itemName: 'Sunglasses'},
@@ -79,20 +79,15 @@ const gearEssentials = [
     {itemId: 77, itemName: 'Cell Phone'},
 ]
 
-
-class GearList extends Component {
-render () {
-    return(
+export default function GearList () { 
+    return (
     gearEssentials.map((obj) => {
         return (
-        <div key={obj.itemId} style={{margin: '10px 0px 10px 10px', alignContent: 'left'}}>
-        <GearItem
-        itemName={obj.itemName}
-        />
-    </div>
-    )}))
-    }
+       <GearItem>
+        <input style={{margin: '0px 10px'}}type='checkbox'/>
+        <div key={obj.itemId}>{obj.itemName}</div>
+        </GearItem>
+    )})
+    )
 
 }
-
-export default GearList;

@@ -72,9 +72,6 @@ class SetAlert extends Component {
         if (this.props.user.id) {
             this.props.hideModal();
         }
-        // if (prevProps.alert !== this.props.alert) {
-        //     console.log('alert redux props have changed!')
-        // }
     }
 
     handleChange = name => event => {
