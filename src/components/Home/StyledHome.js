@@ -4,7 +4,7 @@ export const ContentBox = styled.div`
 width: 50%;
 max-width: 500px;
 padding: 20px;
-background-color: rgba(255, 255, 255, 0.45);
+background-color: rgba(255, 255, 255, 0.5);
 box-shadow: -3px 3px black;  
 
 
@@ -31,21 +31,12 @@ margin: 15px 15px 5px 15px;
     font-size: 1em
 }
 `
-export const SubHead = styled.h4`
-
-font-size: 1em;
-text-align: left;
-margin: 10px 15px;
-
-@media (max-width: 900px) {
-    font-size: 0.8em
-}
-`
 
 export const Details = styled.p`
-font-size: 0.9em;
+font-size: .95em;
 text-align: left;
-margin: 5px 15px 10px 15px;
+line-height: 1.3em;
+margin: 12px 15px 10px 15px;
 
 @media (max-width: 1000px) {
     font-size: .8em
@@ -68,7 +59,8 @@ a:visited {
     color: black;
 }
  padding: 10px 15px;
- font-size: 14px;
+ font-size: 12px;
+ width: 11em;
  border: 1px solid rgb(89, 89, 89);
 box-shadow: -1px 1px 2px black;  
  margin: 10px;

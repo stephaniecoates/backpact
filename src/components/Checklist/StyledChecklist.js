@@ -6,6 +6,8 @@ background-color: rgba(255, 255, 255, 0.7);
 box-shadow: -2px 2px 1px black;
 width: 90%;
 margin: auto;
+display: flex;
+align-items: center;
 @media (max-width: 600px) {
     margin-top: 12px;
     height: 77vh
@@ -13,26 +15,28 @@ margin: auto;
 `
 export const ChecklistContainer = styled.div`
 width: 100%;
-height: 90%;
+height: 97%;
+margin-top: 20px;
 display: flex;
 justify-content: space-evenly;
 align-items: center;
 @media (max-width: 600px) {
     flex-direction: column;
-    height: 73%;
-    margin-top: 20px;
+    justify-content: center;
+    height: 100%;
+    margin-top: -15px;
 }
 `
 
 export const TripChecklistContainer = styled.div`
 width: 70%;
-height: 95%
+height: 100%
 @media (max-width: 750px) {
     width: 65%
 }
 @media (max-width: 600px) {
     width: 90%;
-    height: 35vh;
+    height: 38vh;
 }
 `
 export const TripChecklistBox = styled.div`
@@ -44,7 +48,7 @@ overflow: scroll;
 
 export const GearChecklistContainer = styled.div`
 width: 23%;
-height: 95%
+height: 100%
 @media (max-width: 750px) {
     width: 26%
 }
@@ -59,23 +63,6 @@ export const GearChecklistBox = styled.div`
 height: 87%;
 border: 2px solid black;
 overflow: scroll;
-`
-
-export const ChecklistTitle = styled.h4`
-font-size: 1em;
-text-transform: uppercase;
-text-align: left;
-margin: 0px;
-padding: 20px 10px 0px 30px;
-@media (max-width: 600px) {
-    font-size: 0.8em;
-    text-align: left;
-    margin-bottom: 5px;
-    padding: 10px;
-}
-@media (max-width: 470px) {
-    text-align: left;
-}
 `
 
 export const TripTip = styled.div`

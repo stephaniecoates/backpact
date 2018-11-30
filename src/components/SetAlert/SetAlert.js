@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 import { updateUser, updateAlert, showModal, hideModal } from '../../ducks/reducer';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 import * as moment from 'moment';
 import Modal from './../../Modal/Modal'
 import LoginModal from './../../Modal/LoginModal';
-import styled from 'styled-components';
 import {TiLockClosed} from 'react-icons/ti';
 import {IconContext} from 'react-icons';
+import {SetAlertPage, PleaseLogIn, ActiveAlertDisplay, ActiveAlertHeader, ActiveAlertFooter, ActiveAlertInfo, ScrollingColumn, AlertLine, ColumnContainer, Button} from './StyledSetAlert';
 
 
 class SetAlert extends Component {
@@ -225,22 +224,6 @@ class SetAlert extends Component {
         // var today = moment().format("YYYY-MM-DD")
         // var todayHour = moment().format("HH:mm")
 
-        const SetAlertPage = styled.div`
-        overflow: hidden;
-        `
-        const PleaseLogIn = styled.div`
-        padding: 20px;
-        width: 40vw;
-        
-        margin: 100px auto;
-        border: 1px solid black;
-        box-shadow: -2px 2px 1px black;
-        background-color: rgba(255, 255, 255, 0.5);
-
-
-        `
-        const ActiveAlertDisplay = styled.div``
-
         return (
             <SetAlertPage>
                 {!this.props.user.id && <Modal><LoginModal/></Modal>}
@@ -258,16 +241,60 @@ class SetAlert extends Component {
 
                     this.props.alert.trail_name ?
 
-                        <div style={{ height: '60vh', width: '40vw', margin: 'auto', boxShadow: '-2px 2px 1px', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                            <p>You've got an active alert!</p>
-                            <p>display full alert data here</p>
+                        <ActiveAlertDisplay>
+                            <ActiveAlertHeader>You've got an active alert!</ActiveAlertHeader>
+                            <ActiveAlertInfo>
+                                <ColumnContainer>
+                                <Typography variant='overline'>Trip Itinerary</Typography>
+                                <ScrollingColumn>
+                                <AlertLine>Trip Start: {moment(this.props.alert.trip_start).format("dddd, MMMM Do YYYY [at] h:mma")}</AlertLine>
+                                <AlertLine>Trip End: {moment(this.props.alert.trip_start).format("dddd, MMMM Do YYYY [at] h:mma")}</AlertLine>
+                                <AlertLine>Trail Name: {this.props.alert.trail_name}</AlertLine>
+                                <AlertLine>Trail Type: {this.props.alert.trail_type}</AlertLine>
+                                <AlertLine>Trail Group: {this.props.alert.trail_group}</AlertLine>
+                                <AlertLine>Wilderness Area: {this.props.alert.wilderness_area}</AlertLine>
+                                <AlertLine>Starting Trailhead: {this.props.alert.starting_trailhead}</AlertLine>
+                                <AlertLine>Ending Trailhead: {this.props.alert.ending_trailhead}</AlertLine>
+                                <AlertLine>Roundtrip Distance: {this.props.alert.roundtrip_distance}</AlertLine>
+                                <AlertLine>Town: {this.props.alert.nearest_town}</AlertLine>
+                                <AlertLine>State: {this.props.alert.state}</AlertLine>
+                                <AlertLine>Country: {this.props.alert.country}</AlertLine>
+                                <AlertLine>Trip Description: {this.props.alert.trip_description}</AlertLine>
+                                </ScrollingColumn>
+                                </ColumnContainer>
+                                <ColumnContainer>
+                                <Typography variant='overline'>Your Info</Typography>                                
+                                <ScrollingColumn>
+                                <AlertLine>First Name: {this.props.alert.first_name}</AlertLine>
+                                <AlertLine>Last Name: {this.props.alert.last_name}</AlertLine>
+                                <AlertLine>Age: {this.props.alert.age}</AlertLine>
+                                <AlertLine>Phone Number: {this.props.alert.user_phone_number}</AlertLine>
+                                <AlertLine>Gender: {this.props.alert.gender}</AlertLine>
+                                <AlertLine>Height: {this.props.alert.height}</AlertLine>
+                                <AlertLine>Weight: {this.props.alert.weight}</AlertLine>
+                                <AlertLine>Hair Color: {this.props.alert.hair_color}</AlertLine>
+                                <AlertLine>Clothing Description: {this.props.alert.clothing_description}</AlertLine>
+                                <AlertLine>Medications: {this.props.alert.medications}</AlertLine>
+                                <AlertLine>Medical Issues: {this.props.alert.medical_issues}</AlertLine>
+                                </ScrollingColumn>
+                                </ColumnContainer>
+                                <ColumnContainer>
+                                <Typography variant='overline'>Your Contact</Typography>
+                                <ScrollingColumn>
+                                <AlertLine>Your Contact's Name: {this.props.alert.alert_contact_name}</AlertLine>
+                                <AlertLine>You are {this.props.alert.alert_contact_name}'s: {this.props.alert.user_contact_relationship}</AlertLine>
+                                <AlertLine>{this.props.alert.alert_contact_name}'s Phone Number: {this.props.alert.alert_contact_number}</AlertLine>
+                                <AlertLine>{this.props.alert.alert_contact_name}'s Email: {this.props.alert.alert_contact_email}</AlertLine>
+                                </ScrollingColumn>
+                                </ColumnContainer>
+                            </ActiveAlertInfo>
                             <div>
-                            <p>You can only set one alert at a time. If you'd like to make a change, edit or delete your alert below.</p>
-                            <button onClick={() => this.editAlert()}>Edit Alert</button>
-                            <button onClick={() => this.cancelAlert()}>Delete Alert</button>
+                            <ActiveAlertFooter>You can only set one alert at a time. <br></br> If you'd like to make a change, please edit or delete your current alert.</ActiveAlertFooter>
+                            <Button onClick={() => this.editAlert()}>Edit</Button>
+                            <Button onClick={() => this.cancelAlert()}>Delete</Button>
                             </div>
                          
-                        </div>
+                        </ActiveAlertDisplay>
 
                         :
                         <form style={{ margin: '0px 100px', height: '65vh', padding: '30px', overflow: 'scroll', border: '1px solid grey', backgroundColor: 'rgba(255,255,255,0.7)' }}>

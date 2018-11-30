@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ActiveAlertBar = styled.div`
 width: 100%;
-height: 10%;
+height: 9%;
 position: fixed;
 bottom: 0px;
 background-color: rgba(44, 56, 37, 0.7);
@@ -15,11 +15,11 @@ margin-bottom: 0px;
 `
 
 export const ActiveAlertText = styled.p`
-font-size: 12px;
+font-size: .8em;
 margin: 20px;
 
 @media (max-width: 600px) {
-font-size: 8px;
+font-size: .6em;
 }
 `
 

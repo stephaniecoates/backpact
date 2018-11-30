@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import GearList from './GearList';
 import TripChecklist from './TripChecklist';
 import Typography from '@material-ui/core/Typography';
-import {DashboardContainer, ChecklistContainer, TripChecklistContainer, TripChecklistBox, GearChecklistBox, GearChecklistContainer, ChecklistTitle} from './StyledChecklist';
+import {DashboardContainer, ChecklistContainer, TripChecklistContainer, TripChecklistBox, GearChecklistBox, GearChecklistContainer} from './StyledChecklist';
 
 class ChecklistDashboard extends Component {
 
@@ -11,7 +11,6 @@ class ChecklistDashboard extends Component {
         
         return (
             <DashboardContainer>
-                <ChecklistTitle>Cover all of your bases before hitting the trail.</ChecklistTitle>
                 <ChecklistContainer>
                     <TripChecklistContainer>
                         <Typography variant="overline">Trip Checklist</Typography>
