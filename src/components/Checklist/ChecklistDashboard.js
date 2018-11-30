@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import GearList from './GearList';
 import TripChecklist from './TripChecklist';
-import { updateAlert } from './../../ducks/reducer';
 import Typography from '@material-ui/core/Typography';
 import {DashboardContainer, ChecklistContainer, TripChecklistContainer, TripChecklistBox, GearChecklistBox, GearChecklistContainer, ChecklistTitle} from './StyledChecklist';
 
 class ChecklistDashboard extends Component {
 
     render() {
+        
         return (
             <DashboardContainer>
                 <ChecklistTitle>Cover all of your bases before hitting the trail.</ChecklistTitle>
@@ -39,4 +39,4 @@ function mapStateToProps(state) {
     }
 }
 
-export default connect(mapStateToProps, { updateAlert })(ChecklistDashboard);
+export default connect(mapStateToProps, {})(ChecklistDashboard);

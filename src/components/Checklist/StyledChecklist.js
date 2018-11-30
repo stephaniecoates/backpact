@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const DashboardContainer = styled.div`
-height: 70vh;
+height: 72vh;
 background-color: rgba(255, 255, 255, 0.7);
 box-shadow: -2px 2px 1px black;
 width: 90%;

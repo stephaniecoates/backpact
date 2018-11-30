@@ -7,7 +7,11 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import * as moment from 'moment';
 import Modal from './../../Modal/Modal'
-import LoginModal from './../../Modal/LoginModal'
+import LoginModal from './../../Modal/LoginModal';
+import styled from 'styled-components';
+import {TiLockClosed} from 'react-icons/ti';
+import {IconContext} from 'react-icons';
+
 
 class SetAlert extends Component {
     constructor() {
@@ -217,20 +221,40 @@ class SetAlert extends Component {
     
 
     render() {
+    
         // var today = moment().format("YYYY-MM-DD")
         // var todayHour = moment().format("HH:mm")
+
+        const SetAlertPage = styled.div`
+        overflow: hidden;
+        `
+        const PleaseLogIn = styled.div`
+        padding: 20px;
+        width: 40vw;
+        
+        margin: 100px auto;
+        border: 1px solid black;
+        box-shadow: -2px 2px 1px black;
+        background-color: rgba(255, 255, 255, 0.5);
+
+
+        `
+        const ActiveAlertDisplay = styled.div``
+
         return (
-            <div style={{ overflow: 'hidden' }}>
-                {!this.props.user.id && <Modal><LoginModal /></Modal>}
+            <SetAlertPage>
+                {!this.props.user.id && <Modal><LoginModal/></Modal>}
 
                 {!this.props.user.id ?
-                    <div style={{ padding: '50px', width: '40vw', height: '30vh', margin: '100px auto', border: '3px solid black', backgroundColor: 'rgba(255, 255, 255, 0.5)' }}>
-                    Please log in first to create an alert.
-                    </div>
+                    <PleaseLogIn>
+                        <IconContext.Provider value={{size: '3em'}}>
+                        <TiLockClosed/>
+                        </IconContext.Provider>
+                    <h4 style={{margin: '5px', textTransform: 'uppercase'}}>404: Hiker not found</h4>
+                    <p style={{margin: '20px'}}>Please log in/register to create an alert.</p>
+                    </PleaseLogIn>
 
                     :
-
-                    //editing edit-alert-branch
 
                     this.props.alert.trail_name ?
 
@@ -525,7 +549,7 @@ class SetAlert extends Component {
                             <Button variant='contained' style={{ margin: '30px', color: 'white', backgroundColor: 'black' }} onClick={() => this.setAlert()}>Set Alert</Button>}
                             <Typography variant='caption'>If you don't cancel the alert before your expected return time, we'll text you first to check on you before alerting your designated contact. If we don't hear back from you within in hour - or, if you text us back 'SOS', that's when we alert your contact and email them your trip itinerary and personal info. </Typography>
                         </form>}
-            </div>
+            </SetAlertPage>
 
         )
     }

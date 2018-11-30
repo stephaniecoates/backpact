@@ -50,6 +50,7 @@ class ActiveAlert extends Component {
     
 
     render() {
+        console.log('redux props', this.props)
         return this.props.alert.alert_id && this.props.location.pathname !== '/setalert'? <ActiveAlertBar>
             <ActiveAlertText>ACTIVE ALERT -- You have an alert set for the {this.props.alert.trail_name} trail that ends on {moment(this.props.alert.trip_end).format("MMMM Do YYYY [at] h:mma z")}</ActiveAlertText>
             <ButtonContainer>

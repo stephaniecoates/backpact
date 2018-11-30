@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { updateUser, hideModal, updateAlert } from './../ducks/reducer';
 import TextField from '@material-ui/core/TextField';
 import { withRouter } from 'react-router-dom';
-import styled from 'styled-components';
+import {LoginHeader, LoginSubhead, Button, ButtonContainer, ErrMsg} from './StyledModal';
 
 
 class LoginModal extends Component {
@@ -31,12 +31,21 @@ class LoginModal extends Component {
         })
     }
 
+    //THIS IS THE PROBLEM! IF STATEMENT NOT BECOMING TRUE, SO AXIOS CALL DOESNT RUN AND SET ALERT DATA TO REDUX
+    //this.props changes to hold username and password, and prevprops stays undefined...func should recognize difference and run axios call
+    //this function works on previos version...not function, something thats affecting its timing maybe?
     componentDidUpdate(prevProps) {
-        if ((prevProps.user !== this.props.user) && this.props.user.id) {
+        console.log('loginmodal this.props', this.props.user.id)
+        console.log('loginmodal prevprops', prevProps.user.id)
+        if (this.props.user.id && prevProps.user !== this.props.user) {
+            console.log('component did update running on loginmodal')
             axios.get(`/api/alert-data/${this.props.user.id}`)
                 .then(res => {
+                    console.log('axios alert data req ran')
                     this.props.updateAlert(res.data)
                 })
+        } else {
+            console.log('prevProps !== this.props didnt run')
         }
     }
 
@@ -77,59 +86,22 @@ class LoginModal extends Component {
     }
 
     render() {
-        const LoginHeader = styled.h1`
-        margin-top: 30px;
-        text-transform: lowercase;
-        letter-spacing: 1px;
-        `
-        const LoginSubhead = styled.p`
-        padding: 5px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-size: 0.8em;
-        color: grey;
-        margin: 0px 15px;
-        `
-
-        const Button = styled.button`
-        padding: 8px 20px;
-        font-size: 16px;
-        border: none;
-        box-shadow: -1px 1px 2px black;  
-         margin: 10px 6px;
-         box-sizing: border-box;
-         text-transform: uppercase;
-         font-family: 'Roboto';
-         color: white;
-         text-align: center;
-        background-color: black;
-        border-radius: 4px;
-
-        }
-      `
-
-    const ErrMsg = styled.p`
-    color: red;
-    font-size: 0.5em;
-    margin: 0px;
-    `
         return (
            
                     <div>
                         <LoginHeader>Backpact</LoginHeader>
                         <LoginSubhead>Log in or create an account to start planning your adventure.</LoginSubhead>
 
-
+                        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0px 60px'}}>
                         <TextField required id='username-input' label='username' margin='dense' onChange={(e) => this.updateUsername(e.target.value)} />
-                    
-                        <TextField required id='password-input' type='password' label='password' margin='dense' onChange={(e) => this.updatePassword(e.target.value)} />
-
+                        <TextField required id='password-input' type='password' label='password'  margin='dense' onChange={(e) => this.updatePassword(e.target.value)} />
+                        </div>
                         {this.state.errMsg ? <ErrMsg>{this.state.errMsg}</ErrMsg> : null}
                        
-                        <div>
+                        <ButtonContainer>
                             <Button onClick={() => this.login()}>Log In</Button>
                             <Button onClick={() => this.register()}>Register</Button>
-                            </div>
+                            </ButtonContainer>
               
                     </div>
              
