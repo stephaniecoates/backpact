@@ -1,4 +1,4 @@
-module.exports = {    
+module.exports = {
     createAlert: async (req, res) => {
         let {
             alertId,
@@ -36,6 +36,8 @@ module.exports = {
         } = req.body;
 
         let db = req.app.get('db');
+        let parsedUserPhoneNumber = userPhoneNumber.replace(/[^0-9]/g, "");
+        let parsedAlertContactNumber = alertContactNumber.replace(/[^0-9]/g, "");
         let [createdAlert] = await db.create_alert_info([
             alertId,
             trailName,
@@ -56,7 +58,7 @@ module.exports = {
             firstName,
             lastName,
             age,
-            userPhoneNumber,
+            parsedUserPhoneNumber,
             gender,
             height,
             weight,
@@ -67,13 +69,13 @@ module.exports = {
 
             alertContactName,
             userContactRelationship,
-            alertContactNumber,
+            parsedAlertContactNumber,
             alertContactEmail
         ])
         res.status(200).send(createdAlert)
     },
     getAlertData: async (req, res) => {
-        let {id} = req.params
+        let { id } = req.params
         console.log('req.params.id', id)
         let db = req.app.get('db');
         let [activeAlert] = await db.check_for_alert([id])
@@ -114,45 +116,47 @@ module.exports = {
             alertContactEmail,
             alertId
         } = req.body;
-            let db = req.app.get('db');
-            let [updatedAlert] = await db.update_alert([
-                trailName,
-                trailType,
-                trailGroup,
-                wildernessArea,
-                startingTrailhead,
-                endingTrailhead,
-                roundtripDistance,
-                nearestTown,
-                state,
-                country,
-                tripDescription,
-    
-                tripStart,
-                tripEnd,
-    
-                firstName,
-                lastName,
-                age,
-                userPhoneNumber,
-                gender,
-                height,
-                weight,
-                hairColor,
-                clothingDescription,
-                medications,
-                medicalIssues,
-    
-                alertContactName,
-                userContactRelationship,
-                alertContactNumber,
-                alertContactEmail,
-                alertId
-            ])
-            res.status(200).send(updatedAlert)
+        let db = req.app.get('db');
+        let parsedUserPhoneNumber = userPhoneNumber.replace(/[^0-9]/g, "");
+        let parsedAlertContactNumber = alertContactNumber.replace(/[^0-9]/g, "");
+        let [updatedAlert] = await db.update_alert([
+            trailName,
+            trailType,
+            trailGroup,
+            wildernessArea,
+            startingTrailhead,
+            endingTrailhead,
+            roundtripDistance,
+            nearestTown,
+            state,
+            country,
+            tripDescription,
+
+            tripStart,
+            tripEnd,
+
+            firstName,
+            lastName,
+            age,
+            parsedUserPhoneNumber,
+            gender,
+            height,
+            weight,
+            hairColor,
+            clothingDescription,
+            medications,
+            medicalIssues,
+
+            alertContactName,
+            userContactRelationship,
+            parsedAlertContactNumber,
+            alertContactEmail,
+            alertId
+        ])
+        res.status(200).send(updatedAlert)
     },
     deleteAlert: async (req, res) => {
-        let {id} = req.params
+        let { id } = req.params
         console.log('delete id', id)
         let db = req.app.get('db');
         db.delete_alert([id]);
