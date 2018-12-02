@@ -29,6 +29,7 @@ height: 18%
     right: 15px;
     min-width: 30px;
     min-height: 25px;
+    max-width: 100px;
     background: black;
     border-radius: 3px;
     text-transform: uppercase;
