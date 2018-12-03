@@ -124,7 +124,7 @@ width: 80vw;
 height: 75vh;
 margin: auto;
 margin-top: 15px;
-padding: 10px 30px;
+padding: 20px 50px;
 overflow: scroll;
 box-sizing: border-box;
 border: 1px solid grey;
