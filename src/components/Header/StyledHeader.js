@@ -29,7 +29,6 @@ height: 18%
     right: 15px;
     min-width: 30px;
     min-height: 25px;
-    max-width: 100px;
     background: black;
     border-radius: 3px;
     text-transform: uppercase;
@@ -40,11 +39,12 @@ height: 18%
     padding: 0.3em 1em;
     font-size: 14px;
     
-
+    
     @media (max-width: 600px) {
-    top: 22px;
+      top: 16px;
+      max-width: 100px;
     right: 2px;
-    min-width: 15px;
+   
     min-height: 10px;
     font-size: 10px;
     }
@@ -62,7 +62,7 @@ height: 18%
     margin: 4px 0px;
     color: white;
     position: absolute;
-    top: 5px;
+    top: 2px;
     right: 18px;
     }
     `

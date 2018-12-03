@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-// import Button from '@material-ui/core/Button'
 import axios from 'axios';
 import {updateUser, updateAlert, showModal} from './../../ducks/reducer';
 import Modal from "./../../Modal/Modal";

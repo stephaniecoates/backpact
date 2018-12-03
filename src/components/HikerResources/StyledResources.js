@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Menu = styled.div`
 width: 80vw;
 height: 15%;
-background-color: rgba(255, 255, 255, 0.5);
+background-color: rgba(255, 255, 255, 0.6);
 margin: auto;
 margin-top: 10px;
 display: flex;
@@ -15,10 +15,11 @@ align-items: center;
 
 @media (max-width: 800px) {
     width: 100vw;
+    justify-content: space-evenly;
 
 @media (max-width: 600px) {
     width: 100vw;
-    margin-top: 20px;
+    margin-top: 30px;
     flex-wrap: wrap;
     justify-content: space-evenly;
 }
@@ -34,6 +35,7 @@ padding: 25px;
 color: black
 background-color: rgba(255, 255, 255, 0);
 border: none;
+border-bottom: 3px solid rgba(255, 255, 255, 0);
 
 
 a {
@@ -41,7 +43,7 @@ a {
 }
 
 &:hover {
-    box-shadow: 0px 5px 5px white;
+    border-bottom: 3px solid black;
 }
 
 @media (max-width: 1000px) {
@@ -49,12 +51,12 @@ a {
     font-size: 12px;
 }
 @media (max-width: 800px) {
-    padding: 13px;
+    padding: 16px 8px;
     font-size: 11px;
 }
 @media (max-width: 600px) {
-    padding: 13px;
-    font-size: 12px;
+    padding: 10px;
+    font-size: 10px;
 }
 @media (max-width: 400px) {
     padding: 9px;
@@ -73,7 +75,7 @@ height: 57vh;
 margin: auto;
 margin-top: 5px;
 overflow: scroll;
-background-color: rgba(255, 255, 255, 0.5);
+background-color: rgba(255, 255, 255, 0.6);
 padding: 10px 60px;
 box-sizing: border-box;
 @media (max-width: 1000px) {
