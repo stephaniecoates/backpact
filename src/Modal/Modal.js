@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import {Xbutton, MainModal} from './StyledModal';
 import {IoMdClose} from 'react-icons/io';
 import {IconContext} from 'react-icons';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 
 class Modal extends Component {
   

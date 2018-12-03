@@ -3,7 +3,7 @@ alert_id,
 trail_name,
 trail_type,
 trail_group,
-wilderness_area,
+vehicle,
 starting_trailhead,
 ending_trailhead,
 roundtrip_distance,
@@ -42,7 +42,7 @@ $1, --alert id
 $2,  --trail name
 $3, --trail type
 $4, --trail group
-$5,  --wilderness area
+$5,  --vehicle
 $6, --starting trailhead
 $7,  --ending trailhead
 $8,  --rt distance

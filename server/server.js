@@ -100,7 +100,7 @@ cron.schedule(`* * * * *`, async () => {
             trail_name,
             trail_type,
             trail_group,
-            wilderness_area,
+            vehicle,
             starting_trailhead,
             ending_trailhead,
             roundtrip_distance,
@@ -157,7 +157,7 @@ cron.schedule(`* * * * *`, async () => {
                                 <p>Trail Name: ${trail_name}</p>
                                 <p>Trail Type: ${trail_type}</p>
                                 <p>Trail Group: ${trail_group}</p>
-                                <p>Wilderness Area: ${wilderness_area}</p>
+                                <p>Vehicle at Trailhead: ${vehicle}</p>
                                 <p>Starting Trailhead: ${starting_trailhead}</p>
                                 <p>Ending Trailhead: ${ending_trailhead}</p>
                                 <p>Roundtrip Distance: ${roundtrip_distance}</p>
@@ -214,7 +214,7 @@ cron.schedule(`* * * * *`, async () => {
             trail_name,
             trail_type,
             trail_group,
-            wilderness_area,
+            vehicle,
             starting_trailhead,
             ending_trailhead,
             roundtrip_distance,
@@ -271,7 +271,7 @@ cron.schedule(`* * * * *`, async () => {
                                 <p>Trail Name: ${trail_name}</p>
                                 <p>Trail Type: ${trail_type}</p>
                                 <p>Trail Group: ${trail_group}</p>
-                                <p>Wilderness Area: ${wilderness_area}</p>
+                                <p>Vehicle at Trailhead: ${vehicle}</p>
                                 <p>Starting Trailhead: ${starting_trailhead}</p>
                                 <p>Ending Trailhead: ${ending_trailhead}</p>
                                 <p>Roundtrip Distance: ${roundtrip_distance}</p>

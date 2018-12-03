@@ -8,7 +8,7 @@ import Modal from './../../Modal/Modal'
 import LoginModal from './../../Modal/LoginModal';
 import { TiLockClosed } from 'react-icons/ti';
 import { IconContext } from 'react-icons';
-import { SetAlertPage, PleaseLogIn, ActiveAlertDisplay, ActiveAlertHeader, ActiveAlertFooter, ActiveAlertInfo, ScrollingColumn, AlertLine, ColumnContainer, Button } from './StyledSetAlert';
+import { SetAlertForm, SetAlertPage, PleaseLogIn, ActiveAlertDisplay, ActiveAlertHeader, ActiveAlertFooter, ActiveAlertInfo, ScrollingColumn, AlertLine, ColumnContainer, Button } from './StyledSetAlert';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import InputMask from 'react-input-mask';
 
@@ -23,7 +23,7 @@ class SetAlert extends Component {
             trailName: '',
             trailType: '',
             trailGroup: '',
-            wildernessArea: '',
+            vehicle: '',
             startingTrailhead: '',
             endingTrailhead: '',
             roundtripDistance: '',
@@ -92,7 +92,7 @@ class SetAlert extends Component {
             trailName: this.state.trailName,
             trailType: this.state.trailType,
             trailGroup: this.state.trailGroup,
-            wildernessArea: this.state.wildernessArea,
+            vehicle: this.state.vehicle,
             startingTrailhead: this.state.startingTrailhead,
             endingTrailhead: this.state.endingTrailhead,
             roundtripDistance: this.state.roundtripDistance,
@@ -129,7 +129,7 @@ class SetAlert extends Component {
             trailName: this.state.trailName,
             trailType: this.state.trailType,
             trailGroup: this.state.trailGroup,
-            wildernessArea: this.state.wildernessArea,
+            vehicle: this.state.vehicle,
             startingTrailhead: this.state.startingTrailhead,
             endingTrailhead: this.state.endingTrailhead,
             roundtripDistance: this.state.roundtripDistance,
@@ -169,7 +169,7 @@ class SetAlert extends Component {
             trailName: this.props.alert.trail_name,
             trailType: this.props.alert.trail_type,
             trailGroup: this.props.alert.trail_group,
-            wildernessArea: this.props.alert.wilderness_area,
+            vehicle: this.props.alert.vehicle,
             startingTrailhead: this.props.alert.starting_trailhead,
             endingTrailhead: this.props.alert.ending_trailhead,
             roundtripDistance: this.props.alert.roundtrip_distance,
@@ -219,10 +219,6 @@ class SetAlert extends Component {
     }
 
     render() {
-
-        // var today = moment().format("YYYY-MM-DD")
-        // var todayHour = moment().format("HH:mm")
-
         return (
             <SetAlertPage>
                 {!this.props.user.id && <Modal><LoginModal /></Modal>}
@@ -251,7 +247,7 @@ class SetAlert extends Component {
                                         <AlertLine>Trail Name: {this.props.alert.trail_name}</AlertLine>
                                         <AlertLine>Trail Type: {this.props.alert.trail_type}</AlertLine>
                                         <AlertLine>Trail Group: {this.props.alert.trail_group}</AlertLine>
-                                        <AlertLine>Wilderness Area: {this.props.alert.wilderness_area}</AlertLine>
+                                        <AlertLine>Vehicle at Trailhead: {this.props.alert.vehicle}</AlertLine>
                                         <AlertLine>Starting Trailhead: {this.props.alert.starting_trailhead}</AlertLine>
                                         <AlertLine>Ending Trailhead: {this.props.alert.ending_trailhead}</AlertLine>
                                         <AlertLine>Roundtrip Distance: {this.props.alert.roundtrip_distance}</AlertLine>
@@ -297,7 +293,7 @@ class SetAlert extends Component {
 
                         :
 
-                        <div style={{ margin: '0px 100px', height: '65vh', padding: '30px', overflow: 'scroll', border: '1px solid grey', backgroundColor: 'rgba(255,255,255,0.7)' }}>
+                        <SetAlertForm>
                             <ValidatorForm
                                 ref="form"
                                 onSubmit={() => this.handleSubmit()}
@@ -306,7 +302,7 @@ class SetAlert extends Component {
                                 <TextValidator
                                     name="trailName"
                                     fullWidth
-
+                                    margin='normal'
                                     label="Trail Name"
                                     placeholder="ex) Collegiate Peaks Loop"
                                     value={this.state.trailName}
@@ -317,7 +313,7 @@ class SetAlert extends Component {
                                 <TextValidator
                                     name="trailType"
                                     fullWidth
-                               
+                                    margin='normal'
                                     label="Trail Type"
                                     placeholder='Loop, Out and Back, Point to Point, etc.'
                                     value={this.state.trailType}
@@ -328,23 +324,26 @@ class SetAlert extends Component {
                                 <TextValidator
                                     name="trailGroup"
                                     fullWidth
+                                    margin='normal'
                                     label="Group Size"
                                     multiline
-                                    helperText="Are there other humans/animals in your group? List them here. Otherwise, specify that you're going solo."
+                                    helperText="Are there other humans/animals in your group? List their names here. Otherwise, specify that you're going solo."
                                     value={this.state.trailGroup}
                                     validators={[`required`]}
                                     errorMessages={['this field is required']}
                                     onChange={this.handleChange('trailGroup')}
                                 />
                                 <TextValidator
-                                    name="wildernessArea"
-                                    label="Wilderness Area"
+                                    name="vehicle"
+                                    label="Vehicle at Trailhead"
                                     fullWidth
-                                    placeholder="ex) Collegiate Peaks Wilderness, San Juan National Forest"
-                                    value={this.state.wildernessArea}
+                                    margin='normal'
+                                    placeholder="Blue 2011 Honda CR-V"
+                                    helperText="List the color, make, model, and year of the vehicle left at the starting trailhead. If you didn't drive a car and leave it at the trailhead, specify what transportation you took to the trail."
+                                    value={this.state.vehicle}
                                     validators={[`required`]}
                                     errorMessages={['this field is required']}
-                                    onChange={this.handleChange('wildernessArea')}
+                                    onChange={this.handleChange('vehicle')}
                                 />
                                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-evenly' }}>
                                     <TextValidator
@@ -352,6 +351,7 @@ class SetAlert extends Component {
                                         label="Starting Trailhead"
                                         value={this.state.startingTrailhead}
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
                                         onChange={this.handleChange('startingTrailhead')}
@@ -361,6 +361,7 @@ class SetAlert extends Component {
                                         label="Ending Trailhead"
                                         value={this.state.endingTrailhead}
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
                                         onChange={this.handleChange('endingTrailhead')}
@@ -371,6 +372,7 @@ class SetAlert extends Component {
                                         name="roundtripDistance"
                                         label="Roundtrip Distance"
                                         value={this.state.roundtripDistance}
+                                        margin='normal'
                                         style={{ width: '45%', minWidth: '300px' }}
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
@@ -382,6 +384,7 @@ class SetAlert extends Component {
                                         helperText='If the trail spans multiple towns, list the one nearest the starting trailhead.'
                                         value={this.state.nearestTown}
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
                                         onChange={this.handleChange('nearestTown')}
@@ -393,6 +396,7 @@ class SetAlert extends Component {
                                         label="State"
                                         value={this.state.state}
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
                                         onChange={this.handleChange('state')}
@@ -403,6 +407,7 @@ class SetAlert extends Component {
                                         fullWidth
                                         value={this.state.country}
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
                                         onChange={this.handleChange('country')}
@@ -415,6 +420,7 @@ class SetAlert extends Component {
                                         rows='4'
                                         multiline
                                         fullWidth
+                                        margin='normal'
                                         helperText="Give us an overview of your trip plans. Be as detailed with your itinerary as you'd like."
                                         placeholder="Ex) Doing a solo backpacking trip around the Collegiate Peaks - 80 miles south on Colorado Trail, then hooking up with the Continental Divide Trail and going 80 miles north on that back to Twin Lakes TH. Planning on doing 16-18 miles a day. Taking side trips to summit Mt. Princeton on day 4 and Mt. Yale on day 6. Food resupply at Monarch Pass Souvenir Shop on day 5."
                                         value={this.state.tripDescription}
@@ -433,6 +439,7 @@ class SetAlert extends Component {
                                         type='time'
                                         helperText='start time'
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         value={this.state.tripStartTime}
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
@@ -442,6 +449,7 @@ class SetAlert extends Component {
                                         name="tripStartDate"
                                         type='date'
                                         helperText='start date'
+                                        margin='normal'
                                         style={{ width: '45%', minWidth: '300px' }}
                                         value={this.state.tripStartDate}
                                         validators={[`required`]}
@@ -456,6 +464,7 @@ class SetAlert extends Component {
                                         helperText='anticipated return time'
                                         type='time'
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         value={this.state.tripEndTime}
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
@@ -466,6 +475,7 @@ class SetAlert extends Component {
                                         type='date'
                                         helperText='anticipated return date'
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         value={this.state.tripEndDate}
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
@@ -479,6 +489,7 @@ class SetAlert extends Component {
                                         name="firstName"
                                         label="First Name"
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         value={this.state.firstName}
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
@@ -488,6 +499,7 @@ class SetAlert extends Component {
                                         name="lastName"
                                         label="Last Name"
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         value={this.state.lastName}
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
@@ -497,6 +509,7 @@ class SetAlert extends Component {
                                         name="age"
                                         label="Age"
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         value={this.state.age}
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
@@ -512,6 +525,7 @@ class SetAlert extends Component {
                                             name="userPhoneNumber"
                                             label="Phone #"
                                             style={{ width: '45%', minWidth: '300px' }}
+                                            margin='normal'
                                             helperText="Include your country code, area code, and ten digit number."
                                             value={this.state.userPhoneNumber}
                                             validators={[`required`]}
@@ -524,6 +538,7 @@ class SetAlert extends Component {
                                             name="gender"
                                             label="Gender"
                                             style={{ width: '45%', minWidth: '150px' }}
+                                            margin='normal'
                                             value={this.state.gender}
                                             validators={[`required`]}
                                             errorMessages={['this field is required']}
@@ -533,6 +548,7 @@ class SetAlert extends Component {
                                             name="height"
                                             label="Height"
                                             style={{ width: '45%', minWidth: '150px' }}
+                                            margin='normal'
                                             value={this.state.height}
                                             validators={[`required`]}
                                             errorMessages={['this field is required']}
@@ -545,6 +561,7 @@ class SetAlert extends Component {
                                             name="weight"
                                             label="Weight"
                                             style={{ width: '45%', minWidth: '150px' }}
+                                            margin='normal'
                                             value={this.state.weight}
                                             validators={[`required`]}
                                             errorMessages={['this field is required']}
@@ -554,6 +571,7 @@ class SetAlert extends Component {
                                             name="hairColor"
                                             label="Hair Color"
                                             style={{ width: '45%', minWidth: '150px' }}
+                                            margin='normal'
                                             value={this.state.hairColor}
                                             validators={[`required`]}
                                             errorMessages={['this field is required']}
@@ -567,6 +585,7 @@ class SetAlert extends Component {
                                             helperText="Describe what you'll be wearing on the trail."
                                             multiline
                                             style={{ width: '45%', minWidth: '300px' }}
+                                            margin='normal'
                                             value={this.state.clothingDescription}
                                             validators={[`required`]}
                                             errorMessages={['this field is required']}
@@ -577,6 +596,7 @@ class SetAlert extends Component {
                                             label="Medications"
                                             multiline
                                             helperText="List any medications you take."
+                                            margin='normal'
                                             style={{ width: '45%', minWidth: '300px' }}
                                             value={this.state.medications}
                                             validators={[`required`]}
@@ -590,6 +610,7 @@ class SetAlert extends Component {
                                     label="Medical Issues"
                                     fullWidth
                                     multiline
+                                    margin='normal'
                                     helperText="List medical issues emergency responders should know about."
                                     value={this.state.medicalIssues}
                                     validators={[`required`]}
@@ -604,6 +625,7 @@ class SetAlert extends Component {
                                         name="alertContactName"
                                         label="Name"
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         value={this.state.alertContactName}
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
@@ -615,6 +637,7 @@ class SetAlert extends Component {
                                         value={this.state.userContactRelationship}
                                         style={{ width: '45%', minWidth: '300px' }}
                                         placeholder='ex) daughter, roommate, friend, partner, etc.'
+                                        margin='normal'
                                         validators={[`required`]}
                                         errorMessages={['this field is required']}
                                         onChange={this.handleChange('userContactRelationship')}
@@ -631,6 +654,7 @@ class SetAlert extends Component {
                                             name="alertContactNumber"
                                             label="Phone #"
                                             style={{ width: '45%', minWidth: '300px' }}
+                                            margin='normal'
                                             helperText="Include their country code, area code, and ten digit number."
                                             value={this.state.alertContactNumber}
                                             validators={[`required`]}
@@ -643,6 +667,7 @@ class SetAlert extends Component {
                                         label="Email"
                                         placeholder='email@example.com'
                                         style={{ width: '45%', minWidth: '300px' }}
+                                        margin='normal'
                                         value={this.state.alertContactEmail}
                                         validators={[`required`, 'isEmail']}
                                         errorMessages={['this field is required', 'please enter a valid email']}
@@ -656,7 +681,7 @@ class SetAlert extends Component {
 
                                 <Typography variant='caption'>If you don't cancel the alert before your expected return time, we'll text you first to check on you before alerting your designated contact. If we don't hear back from you within in hour - or, if you text us back 'SOS', that's when we alert your contact and email them your trip itinerary and personal info. </Typography>
                             </ValidatorForm>
-                        </div>}
+                        </SetAlertForm>}
 
             </SetAlertPage>
 

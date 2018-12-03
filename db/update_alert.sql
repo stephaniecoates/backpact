@@ -3,7 +3,7 @@ SET
 trail_name = $1,
 trail_type = $2,
 trail_group = $3,
-wilderness_area = $4,
+vehicle = $4,
 starting_trailhead = $5,
 ending_trailhead = $6,
 roundtrip_distance = $7,

@@ -23,9 +23,7 @@ background-color: rgba(255, 255, 255, 0.6);
     width: 90%;
     height: 80vh;
 }
-
 `
-
 
 export const ActiveAlertHeader = styled.h3`
 padding: 20px;
@@ -119,4 +117,16 @@ font-size: 8px;
 padding: 4px 0px;
 margin: 3px;
 }
+`
+
+export const SetAlertForm = styled.div`
+width: 60vw;
+height: 65vh;
+margin: auto;
+margin-top: 15px;
+padding: 30px;
+overflow: scroll;
+border: 1px solid grey;
+box-shadow: -3px 3px 2px black;
+background-color: rgba(255,255,255,0.7);
 `
