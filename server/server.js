@@ -6,12 +6,9 @@ var cron = require('node-cron');
 var twilio = require('twilio');
 const bodyParser = require('body-parser');
 var moment = require('moment-timezone');
-
 const nodemailer = require('nodemailer');
 
 const authController = require('./controllers/authController');
-// const gearController = require('./controllers/gearController');
-// const hikeController = require('./controllers/hikeController');
 const alertController = require('./controllers/alertController');
 const smsController = require('./controllers/smsController')
 
@@ -55,10 +52,6 @@ app.get(`/auth/user-data`, authController.getUserData)
 
 app.get(`/auth/logout`, authController.logout)
 
-//hike endpoints
-
-//gear endpoints
-
 //alert endpoints
 app.post(`/api/createalert`, alertController.createAlert)
 
@@ -73,7 +66,6 @@ app.post('/sms', smsController.recieveSMS)
 
 //cron scheduler, running every minute
 cron.schedule(`* * * * *`, async () => {
-    //can I move this fn for organizational purposes but still have access to db?
     let db = app.get('db');
     let expiredAlerts = await db.select_expired_alerts();
     console.log('array of expired alerts every minute', expiredAlerts)

@@ -30,7 +30,9 @@ medical_issues = $24,
 alert_contact_name = $25,
 user_contact_relationship = $26,
 alert_contact_number = $27,
-alert_contact_email = $28
+alert_contact_email = $28,
+alert_text_running = 'true',
+hour_countdown = null
 
 WHERE 
 alert_id = $29;
