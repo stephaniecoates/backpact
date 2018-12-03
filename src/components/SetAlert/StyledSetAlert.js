@@ -120,13 +120,70 @@ margin: 3px;
 `
 
 export const SetAlertForm = styled.div`
-width: 60vw;
-height: 65vh;
+width: 80vw;
+height: 75vh;
 margin: auto;
 margin-top: 15px;
-padding: 30px;
+padding: 10px 30px;
 overflow: scroll;
+box-sizing: border-box;
 border: 1px solid grey;
-box-shadow: -3px 3px 2px black;
+box-shadow: -2px 2px 2px black;
 background-color: rgba(255,255,255,0.7);
+@media (max-width: 600px) {
+    width: 90vw;
+    height: 85vh;
+}
 `
+export const FormHeading = styled.h3`
+text-align: left;
+margin-bottom: 0px;
+`
+
+export const HalfWidthInputContainer = styled.div`
+display: flex
+justifyContent: space-between;
+
+@media (max-width: 500px) {
+    display: block;  
+}
+`
+
+export const SubmitButton = styled.button`
+
+a {
+     text-decoration: none;
+  color: black;
+}
+a:visited {
+    color: black;
+}
+
+&:hover {
+    box-shadow: -3px 3px 1px white;
+}
+
+ padding: 10px 15px;
+ font-size: 12px;
+ width: 11em;
+box-shadow: -1px 1px 2px black;  
+ margin: 20px;
+ box-sizing: border-box;
+border: none;
+ text-transform: uppercase;
+ font-family: 'Roboto';
+ color: white;
+ text-align: center;
+    background-color: black;
+    border-radius: 4px;
+    `
+
+    export const TopInfo = styled.p`
+    text-align: left;
+    font-size: .9em;
+    `
+
+    export const MainHeading = styled.h2`
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    `
