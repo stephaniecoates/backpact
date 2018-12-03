@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { updateUser, hideModal, updateAlert } from './../ducks/reducer';
 import TextField from '@material-ui/core/TextField';
 import { withRouter } from 'react-router-dom';
-import {LoginHeader, LoginSubhead, Button, ButtonContainer, ErrMsg} from './StyledModal';
+import { LoginHeader, LoginSubhead, Button, ButtonContainer, ErrMsg } from './StyledModal';
 
 
 class LoginModal extends Component {
@@ -60,6 +60,11 @@ class LoginModal extends Component {
             this.props.hideModal();
             let userRes = await axios.get(`/auth/user-data`)
             this.props.updateUser(userRes.data)
+            this.setState({
+                username: '',
+                password: '',
+                errMsg: ''
+            })
         } else {
             this.setState({
                 errMsg: response
@@ -87,24 +92,24 @@ class LoginModal extends Component {
 
     render() {
         return (
-           
-                    <div>
-                        <LoginHeader>Backpact</LoginHeader>
-                        <LoginSubhead>Log in or create an account to start planning your adventure.</LoginSubhead>
 
-                        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0px 60px'}}>
-                        <TextField required id='username-input' label='username' margin='dense' onChange={(e) => this.updateUsername(e.target.value)} />
-                        <TextField required id='password-input' type='password' label='password'  margin='dense' onChange={(e) => this.updatePassword(e.target.value)} />
-                        </div>
-                        {this.state.errMsg ? <ErrMsg>{this.state.errMsg}</ErrMsg> : null}
-                       
-                        <ButtonContainer>
-                            <Button onClick={() => this.login()}>Log In</Button>
-                            <Button onClick={() => this.register()}>Register</Button>
-                            </ButtonContainer>
-              
-                    </div>
-             
+            <div>
+                <LoginHeader>Backpact</LoginHeader>
+                <LoginSubhead>Log in or create an account to start planning your adventure.</LoginSubhead>
+
+                <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', margin: '0px 60px' }}>
+                    <TextField value={this.state.username} required id='username-input' label='username' margin='dense' onChange={(e) => this.updateUsername(e.target.value)} />
+                    <TextField value={this.state.password} required id='password-input' type='password' label='password' margin='dense' onChange={(e) => this.updatePassword(e.target.value)} />
+                </div>
+                {this.state.errMsg ? <ErrMsg>{this.state.errMsg}</ErrMsg> : null}
+
+                <ButtonContainer>
+                    <Button onClick={() => this.login()}>Log In</Button>
+                    <Button onClick={() => this.register()}>Register</Button>
+                </ButtonContainer>
+
+            </div>
+
         )
     }
 }

@@ -1,5 +1,19 @@
 import styled from 'styled-components';
 
+export const ShowHideModal = styled.div`
+    
+    display: ${(props) => props.modalVisible ? "block" : "none" };
+    position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      width:100%;        
+      height: 100%;
+      background: rgba(255, 255, 255, 0.6);
+
+  
+    `
+
 export const LoginHeader = styled.h1`
 margin-top: 30px;
 text-transform: lowercase;
