@@ -119,7 +119,7 @@ cron.schedule(`* * * * *`, async () => {
             alert_contact_email} = alert
         //send message to designated contact
         client.messages.create({
-            body: `Hello, ${alert_contact_name}! Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} was supposed to return by today, ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("MMM Do")} at ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("h:mma")}. We've emailed their trip itinerary and personal information to you at ${alert_contact_email}. If you can't get ahold of them yourself and are concerned for their safety, we recommend passing on this information to the ${state} state police to initiate a search and rescue effort. For more information: https://sectionhiker.com/how-to-report-a-missing-hiker/ --Backpact Trail Alert App`,
+            body: `Hello, ${alert_contact_name}! Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} was supposed to return by today, ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("MMM Do")} at ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("h:mma")}. We've emailed their trip itinerary and personal information to you at ${alert_contact_email}. If you can't get ahold of them yourself and are concerned for their safety, we recommend passing on this information to the ${state} state police to initiate a search and rescue effort. --Backpact Trail Alert App`,
             to: `+${alert_contact_number}`,
             from: TWILIO_NUMBER
         })
@@ -140,7 +140,7 @@ cron.schedule(`* * * * *`, async () => {
                         to: alert_contact_email,
                         subject: `Alert for hiker ${first_name} ${last_name}`,
                         html: `<header><p>Hello ${alert_contact_name},<p>
-                                <p>Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} was supposed to return today, ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("MMM Do")} at ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("h:mma")}. Their detailed trip itinerary and personal information is below. If you can't get ahold of them yourself and are concerned for their safety, we recommend passing on this information to the ${state} state police to initiate a search and rescue effort. For more information on reporting a missing hiker, please visit: https://sectionhiker.com/how-to-report-a-missing-hiker/.</p>
+                                <p>Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} was supposed to return today, ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("MMM Do")} at ${moment(trip_end, "YYYY-MM-DDTHH:mm:ss.SS").format("h:mma")}. Their detailed trip itinerary and personal information is below. If you can't get ahold of them yourself and are concerned for their safety, we recommend passing on this information to the ${state} state police to initiate a search and rescue effort. For more information on reporting a missing hiker, <a href="https://backpact.info/#/resources/fordesignatedcontacts">click here</a>.
                                 <br></br>
                                 </header>
                                 <h4>${first_name}'s Trip Itinerary:</h4>
@@ -233,7 +233,7 @@ cron.schedule(`* * * * *`, async () => {
             alert_contact_email} = alert
         //send message to designated contact
         client.messages.create({
-            body: `Hello, ${alert_contact_name}. Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} sent a SOS call for help through our app - something has gone wrong and they're in trouble. We've emailed their trip itinerary and personal information to you at ${alert_contact_email}. Please pass this information on to the ${state} state police ASAP to initiate a search and rescue effort. For more information: https://sectionhiker.com/how-to-report-a-missing-hiker/ --Backpact Trail Alert App`,
+            body: `Hello, ${alert_contact_name}. Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} sent a SOS call for help through our app - something has gone wrong and they're in trouble. We've emailed their trip itinerary and personal information to you at ${alert_contact_email}. Please pass this information on to the ${state} state police ASAP to initiate a search and rescue effort. --Backpact Trail Alert App`,
             to: `+${alert_contact_number}`,
             from: TWILIO_NUMBER
         })
@@ -254,7 +254,7 @@ cron.schedule(`* * * * *`, async () => {
                         to: alert_contact_email,
                         subject: `URGENT: SOS alert for hiker ${first_name} ${last_name}`,
                         html: `<header><p>Hello ${alert_contact_name},<p>
-                                <p>Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} sent a SOS call for help through our app - something has gone wrong and they're in trouble. Their detailed trip itinerary and personal information is below. Please pass this information on to the ${state} state police ASAP to initiate a search and rescue effort. For more information on reporting a missing hiker, please visit: https://sectionhiker.com/how-to-report-a-missing-hiker/.</p>
+                                <p>Your ${user_contact_relationship}, ${first_name} ${last_name} went on a hiking/backpacking trip and listed you as their emergency contact. ${first_name} sent a SOS call for help through our app - something has gone wrong and they're in trouble. Their detailed trip itinerary and personal information is below. Please pass this information on to the ${state} state police ASAP to initiate a search and rescue effort. For more information on reporting a missing hiker, <a href="https://backpact.info/#/resources/fordesignatedcontacts">click here</a>.
                                 <br></br>
                                 </header>
                                 <h4>${first_name}'s Trip Itinerary:</h4>
