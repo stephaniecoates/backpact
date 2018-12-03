@@ -31,22 +31,13 @@ class LoginModal extends Component {
         })
     }
 
-    //THIS IS THE PROBLEM! IF STATEMENT NOT BECOMING TRUE, SO AXIOS CALL DOESNT RUN AND SET ALERT DATA TO REDUX
-    //this.props changes to hold username and password, and prevprops stays undefined...func should recognize difference and run axios call
-    //this function works on previos version...not function, something thats affecting its timing maybe?
     componentDidUpdate(prevProps) {
-        console.log('loginmodal this.props', this.props.user.id)
-        console.log('loginmodal prevprops', prevProps.user.id)
         if (this.props.user.id && prevProps.user !== this.props.user) {
-            console.log('component did update running on loginmodal')
             axios.get(`/api/alert-data/${this.props.user.id}`)
                 .then(res => {
-                    console.log('axios alert data req ran')
                     this.props.updateAlert(res.data)
                 })
-        } else {
-            console.log('prevProps !== this.props didnt run')
-        }
+        } 
     }
 
     async login() {

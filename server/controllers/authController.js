@@ -14,7 +14,6 @@ module.exports = {
     },
     login: async (req, res) => {
         let {username, password} = req.body;
-        console.log(username, password)
         let db = req.app.get('db');
         let [foundUser] = await db.check_for_user([username]);
         if (foundUser) {

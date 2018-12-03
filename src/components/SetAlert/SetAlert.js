@@ -211,7 +211,6 @@ class SetAlert extends Component {
     }
 
     async componentWillUnmount() {
-        console.log('resetting redux alert state')
         if (this.props.user.id) {
             let res = await axios.get(`/api/alert-data/${this.props.user.id}`)
             this.props.updateAlert(res.data)

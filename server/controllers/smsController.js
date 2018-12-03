@@ -8,7 +8,6 @@ const MessagingResponse = require('twilio').twiml.MessagingResponse;
             const textResponse = Body.replace(/[^a-zA-Z]/g, "").toUpperCase();
             const hourExtension = Body.replace(/[^0-9]/g, "");
             const userNumber = From.replace(/[^0-9]/g, "");
-            console.log(textResponse)
             let db = req.app.get('db');
             if (textResponse == 'BACK') {
                 await db.delete_alert_by_user_phone_number([userNumber])

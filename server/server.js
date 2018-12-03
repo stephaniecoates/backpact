@@ -68,7 +68,6 @@ app.post('/sms', smsController.recieveSMS)
 cron.schedule(`* * * * *`, async () => {
     let db = app.get('db');
     let expiredAlerts = await db.select_expired_alerts();
-    console.log('array of expired alerts every minute', expiredAlerts)
     expiredAlerts.forEach(alert => {
         let { first_name, user_phone_number, alert_contact_name, alert_id } = alert
         client.messages.create({
@@ -86,7 +85,6 @@ cron.schedule(`* * * * *`, async () => {
             });
     })
     let noResponseAlerts = await db.select_no_response_alerts()
-    console.log('array of no response alerts', noResponseAlerts)
     noResponseAlerts.forEach(alert => {
         let {alert_id,
             trail_name,
@@ -200,7 +198,6 @@ cron.schedule(`* * * * *`, async () => {
             });
     })
     let sosAlerts = await db.select_sos_alerts();
-    console.log('array of sos alerts', sosAlerts);
     sosAlerts.forEach(alert => {
         let {alert_id,
             trail_name,
