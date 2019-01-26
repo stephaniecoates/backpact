@@ -14,7 +14,7 @@ Backpact is a responsive trip planning tool & alert system to keep hikers safe i
 - TwiML used to receive SMS texts from hikers to cancel their alert, extend it, or send an SOS alert to their designated contact immediately
 - Email alerts sent to designated contacts via nodemailer
 
-Website: http://backpact.info
+Website: https://backpact.info
 
 ![Backpact Homepage](screenshots/homepage.png "Backpact Homepage")
 ![Backpact Login](screenshots/login.png "Login Page")
