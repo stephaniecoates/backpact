@@ -314,5 +314,5 @@ cron.schedule(`* * * * *`, async () => {
 
 //listen
 app.listen(SERVER_PORT, () => {
-    console.log(`Port ${SERVER_PORT} is open for business.`)
+    (`Port ${SERVER_PORT} is open for business.`)
 })
