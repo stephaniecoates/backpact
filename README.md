@@ -26,13 +26,9 @@ Website: https://backpact.info
 ![Backpact Set Alert Bottom](screenshots/setalert2.png "Set Alert Page")
 ![Backpact Active Alert](screenshots/activealert.png "Active Alert Page")
 ![Backpact Resources](screenshots/resources.png "Resources Page")
-
-![Check-In Text](screenshots/checkInText.png "Check-In Text")
-<img src="./screenshots/checkInText.png" width="300">
-![Extend Trip Text](screenshots/lateText.png "Extend Trip Text")
-![SOS Text](screenshots/SOSText.png "SOS Text")
-![Designated Contact Alert](screenshots/contactText.png "Contact Alert Text")
-![Designated Contact Email Alert](screenshots/email1.png "Email Alert")
-![Designated Contact Email Alert](screenshots/email2.png "Email Alert")
-
-
+<img src="./screenshots/checkInText.png" width="400">
+<img src="./screenshots/lateText.png" width="400">
+<img src="./screenshots/SOSText.png" width="400">
+<img src="./screenshots/contactText.png" width="400">
+<img src="./screenshots/email1.png" width="400">
+<img src="./screenshots/email2.png" width="400">
