@@ -1,0 +1,16 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+feat(readme): added text functionality screenshots
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   README.md
+#	new file:   screenshots/SOSText.png
+#	new file:   screenshots/checkInText.png
+#	new file:   screenshots/contactText.png
+#	new file:   screenshots/email1.png
+#	new file:   screenshots/email2.png
+#	new file:   screenshots/lateText.png
+#
