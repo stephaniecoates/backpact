@@ -18,7 +18,7 @@ Backpact is a responsive trip planning tool & alert system to keep hikers safe i
 
 Website: https://backpact.info
 
-**NOTE:** This application used a Twilio trial subscription for sending and receiving SMS texts. The trial subscription has since expired, and the functionality will not work as expected. The hosted version of this web app is for viewing purposes only and should not be relied on as an actual alert system anymore!
+**NOTE:** This application used a Twilio trial subscription for sending and receiving SMS texts. The trial subscription has expired and the site is no longer actively hosted. See screenshots below for what the site looked like!
 
 ![Backpact Homepage](screenshots/homepage.png "Backpact Homepage")
 ![Backpact Login](screenshots/login.png "Login Page")
